@@ -4,18 +4,147 @@
     box-sizing: border-box;
 }
 
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background-color: firebrick ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.header .logo{
+    font-size: 1.7em;
+    color: #fff;
+    text-decoration: none;
+    
+}
+
+
+.nav a{
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 10px;
+    
+}
+
+.nav a::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    left: 0;
+    bottom: -6px;
+    transform: scaleX(0);
+    transition: .5s;
+}
+
+.nav a:hover::after{
+    transform: scaleX(1);
+}
+
+
+.container{
+    flex-direction: row;
+    align-items: left;
+    justify-content: left;
+    height: 100vh;
+
+}
+
+    
 body {
     background-color: beige;
-}
-
-img {
-    width: 300px;
-    padding: 10px;
-}
-
-.container {
+    height: 100vh;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.form-container h2{
+    text-align: center;
+    margin-bottom: 30px;
+
+}
+
+.form-container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+.Recuerdame-btn{
+    accent-color: #fff;
+    margin-right: 5px;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.Recuerdame-btn label input{
+    accent-color: #fff;
+    margin-right: 3px;
+    font-weight: bold;
+   
+}
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: crimson;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.submit-btn:hover, .submit-btn:active{
+    background-color:rgb(155, 9, 38);
+    color:#fff;
+    border-color: rgb(155, 9, 38);
+}
+
+.submit-btn:focus{
+    box-shadow: 0 0 0 3px crimson;
+}
+
+p {
+    margin-top: 15px;
+}
+
+.warnings{
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    color: blue;
+    padding-top: 20px;
+
 }
