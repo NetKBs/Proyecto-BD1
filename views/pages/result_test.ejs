@@ -8,10 +8,10 @@
 <body>
     <h1>Detalles del Usuario</h1>
     <ul>
-        <li>ID: <%= data.id %></li>
-        <li>Activo: <%= data.activo %></li>
-        <li>Fecha de Ingreso: <%= data.fecha_ingreso %></li>
-        <li>Fecha de Salida: <%= data.fecha_salida || 'N/A' %></li>
+        <li>ID: <%= data.coord.id %></li>
+        <li>Activo: <%= data.coord.activo %></li>
+        <li>Fecha de Ingreso: <%= data.coord.fecha_ingreso %></li>
+        <li>Fecha de Salida: <%= data.coord.fecha_salida || 'N/A' %></li>
         <li>Datos Personales:</li>
         <ul>
             <li>Nombre: <%= data.datos_personales.primer_nombre %> <%= data.datos_personales.segundo_nombre %></li>
