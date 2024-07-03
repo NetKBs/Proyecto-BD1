@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const auth = require('./middleware/cookieJwtAuth')
 
-const PORT = 3001
+const PORT = 3002
 const app = express()
 
 // configs
@@ -20,23 +20,6 @@ app.get("/", (req, res)=> {
     res.render("home", {titulo: "inicio"});
 });
 
-app.get("/Representante", (req, res)=>{
-    res.render("Representante")
-
-});
-
-app.get("/RegistrarseRepresentante", (req, res)=>{
-    res.render("RegistrarseRepresentante")
-
-});
-
-app.get("/Docente", (req, res)=>{
-      res.render("Docente")
-});
-
-app.get("/Coordinador", (req, res)=>{
-    res.render("Coordinador")
-});
 
 // routers
 const coordinadorRouters = require('./routers/coordinadorRouters')

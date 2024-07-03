@@ -75,6 +75,7 @@ body {
 
 }
 
+
 .form-container {
     width: 300px;
     margin: 0 auto;
@@ -109,13 +110,7 @@ body {
     margin-bottom: 15px;
 }
 
-.Recuerdame-btn label input{
-    accent-color: #fff;
-    margin-right: 3px;
-    font-weight: bold;
-   
-}
-.submit-btn {
+.submit {
     display: block;
     width: 100%;
     padding: 10px;
@@ -126,13 +121,13 @@ body {
     cursor: pointer;
 }
 
-.submit-btn:hover, .submit-btn:active{
+.submit:hover, .submit:active{
     background-color:rgb(155, 9, 38);
     color:#fff;
     border-color: rgb(155, 9, 38);
 }
 
-.submit-btn:focus{
+.submit:focus{
     box-shadow: 0 0 0 3px crimson;
 }
 
