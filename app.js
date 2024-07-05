@@ -16,34 +16,24 @@ app.set('views', path.join(__dirname, 'views/pages'))
 app.use(express.static('public'));
 
 
-app.get("/", (req, res)=> {
-    res.render("home", {titulo: "inicio"});
-});
+app.get('/', (req, res) => {
+    res.render('home')
+})
 
-app.get("/Representante", (req, res)=>{
-    res.render("Representante")
+// HACER PRUEBA PARA RENDERIZAR SUS VISTAS ACÁ
+// borrar luego de terminar la prueba
 
-});
 
-app.get("/RegistrarseRepresentante", (req, res)=>{
-    res.render("RegistrarseRepresentante")
 
-});
 
-app.get("/Docente", (req, res)=>{
-      res.render("Docente")
-});
 
-app.get("/Coordinador", (req, res)=>{
-    res.render("Coordinador")
-});
 
 // routers
-const coordinadorRouters = require('./routers/coordinadorRouters')
+/*const coordinadorRouters = require('./routers/coordinadorRouters')
 const usuarioRouters = require('./routers/usuarioRouters')
 
 app.use('/coordinador', auth('Coordinador'), coordinadorRouters)
-app.use('/usuario', usuarioRouters)
+app.use('/usuario', usuarioRouters)*/
 
 app.listen(PORT, () => console.log('Server running on port localhost:'+PORT))
 
