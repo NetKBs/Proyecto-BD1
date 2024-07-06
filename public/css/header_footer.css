@@ -1,0 +1,45 @@
+/* Estilos para el header */
+header {
+    background-color: #011140;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    color: #fff;
+    z-index: 23;
+    position: sticky;
+    top: 0;
+}
+
+header a {
+    color: #fff;
+    font-size: larger;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 10px;
+    padding: 10px;
+    
+    
+}
+
+header img {
+    width: 70px;
+    margin-right: 10px;
+}
+
+#left-header {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilos para el footer */
+footer {
+    background-color: #011140;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+}

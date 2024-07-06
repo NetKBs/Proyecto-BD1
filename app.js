@@ -24,10 +24,6 @@ app.get('/', (req, res) => {
 // borrar luego de terminar la prueba
 
 
-
-
-
-
 // routers
 /*const coordinadorRouters = require('./routers/coordinadorRouters')
 const usuarioRouters = require('./routers/usuarioRouters')
