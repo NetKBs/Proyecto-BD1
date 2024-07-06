@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const auth = require('./middleware/cookieJwtAuth')
 
-const PORT = 3002
+const PORT = 3000
 const app = express()
 
 // configs
@@ -23,6 +23,9 @@ app.get('/', (req, res) => {
 // HACER PRUEBA PARA RENDERIZAR SUS VISTAS ACÁ
 // borrar luego de terminar la prueba
 
+app.get('/testing', (req, res) => {
+    res.render('coordinador/home')
+})
 
 // routers
 /*const coordinadorRouters = require('./routers/coordinadorRouters')
