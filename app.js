@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const auth = require('./middleware/cookieJwtAuth')
 
-const PORT = 3000
+const PORT = 3002
 const app = express()
 
 // configs
