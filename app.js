@@ -27,6 +27,10 @@ app.get('/testing', (req, res) => {
     res.render('coordinador/home')
 })
 
+app.get('/testing2', (req, res) => {
+    res.render('login_.ejs')
+})
+
 // routers
 /*const coordinadorRouters = require('./routers/coordinadorRouters')
 const usuarioRouters = require('./routers/usuarioRouters')
