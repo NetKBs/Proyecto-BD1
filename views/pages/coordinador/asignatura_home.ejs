@@ -4,8 +4,223 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coordinador - Asignaturas</title>
+    <link rel="stylesheet" href="/css/init.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/header_footer.css">
+    <link rel="stylesheet" href="/css/coordinador/asignatura_home.css">
+    <style>
+        /* Estilos para el contenido principal cuando hay un sidebar*/
+        .content-main {
+            margin-left: 220px;
+            padding: 10px;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div id="left-header">
+            <a href="#"><img src="images/logo.png" alt="logo"></a>
+            <h1>Coordinador Abiham Ramos</h1>
+        </div>
+    
+        <!-- OPCIONES DEL HEADER ACA -->
+        <div id="right-header">
+            <a href="#">Salir</a>
+        <div>
+    </header>
+    
+    <nav id="sidebar">
+        <!-- OPCIONES DE LA SIDEBAR ACA -->
+         <a href="#">Inicio</a>
+         <a href="#">Periodos</a>
+         <a href="#" class="actual-link-sidebar">Asignaturas</a>
+         <a href="#">Cargas Académicas</a>
+         <a href="#">Inscripción</a>
+         <a href="#">Calificaciones</a>
+         <a href="#">Docentes</a>
+         <a href="#">Estudiantes</a>
+         <a href="#">Representantes</a>
+    </nav>
+    
+    <!-- ACÁ IRÁ EL CONTENIDO QUE SE MOSTRARÁ EN EL MEDIO DE LA PAGINA -->
+    <main class="content-main">
+        <h2>Gestión de Asignaturas</h2>
+        <div class="card-agregar">
+            <h3>Agregar Nueva Asignatura</h3>
+            <form action="" method="POST">
+                <label for="asignatura">Nombre de la asignatura</label>
+                <input type="text" name="asignatura" id="asignatura">
+                
+                <fieldset>
+                    <legend>Años en los que se imparte</legend>
+                    <label>
+                        <input type="checkbox" name="1" value="1"> Grado 1
+                    </label>
+                    <label>
+                        <input type="checkbox" name="2" value="2"> Grado 2
+                    </label>
+                    <label>
+                        <input type="checkbox" name="3" value="3"> Grado 3
+                    </label>
+                    <label>
+                        <input type="checkbox" name="4" value="4"> Grado 4
+                    </label>
+                    <label>
+                        <input type="checkbox" name="5" value="5"> Grado 5
+                    </label>
+                </fieldset>
+
+                <input type="submit" value="Agregar">
+            </form>
+        </div>
+
+        <div class="card-tabla">
+            <h3>Asignaturas Creadas</h3>
+            <!--Crear una tabla con codigo, nombre y años/grados en los que se da la materia-->
+            <table>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Grados</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Matemáticas</td>
+                    <td>1, 2, 3, 4, 5</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Lenguaje</td>
+                    <td>1, 2, 3, 4, 5</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Química</td>
+                    <td>3, 4, 5</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Historia</td>
+                    <td>1, 2, 3, 4, 5</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Física</td>
+                    <td>2, 3, 4, 5</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Biología y Geología</td>
+                    <td>1, 2, 3, 4</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Educación Física</td>
+                    <td>1, 2, 3, 4</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Educación Plástica, Visual y Audiovisual</td>
+                    <td>1, 2, 3, 4</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Física y Química</td>
+                    <td>3, 4</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Geografía e Historia</td>
+                    <td>1, 2, 3, 4</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Lengua Castellana y Literatura</td>
+                    <td>1, 2, 3, 4, 5</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Lengua Extranjera</td>
+                    <td>1, 2, 3, 4, 5</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Matemáticas</td>
+                    <td>1, 2, 3, 4, 5</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Tecnología</td>
+                    <td>1, 2, 3, 4</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Música</td>
+                    <td>1, 2, 3, 4</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>Religión o Valores Éticos</td>
+                    <td>1, 2, 3, 4</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>Ciencias Sociales y Ciudadanía</td>
+                    <td>1, 2, 3, 4</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>Educación para la Ciudadanía y los Derechos Humanos</td>
+                    <td>1, 2, 3, 4</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Economía</td>
+                    <td>3, 4</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>Informática</td>
+                    <td>1, 2, 3, 4</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>Filosofía</td>
+                    <td>3, 4</td>
+                    <td><button class="edit-button">Editar</button></td>
+                </tr>
+            </table>
+            
+        </div>
+    </main>
+    
+    
+    <footer>
+        <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
+    </footer>
     
 </body>
 </html>

@@ -24,11 +24,11 @@ app.get('/', (req, res) => {
 // borrar luego de terminar la prueba
 
 app.get('/testing', (req, res) => {
-    res.render('coordinador/home')
+    res.render('coordinador/inscripcion_home')
 })
 
 app.get('/testing2', (req, res) => {
-    res.render('login_.ejs')
+    res.render('signup.ejs')
 })
 
 // routers
