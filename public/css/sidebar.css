@@ -1,3 +1,12 @@
+/* Ajustar el main para el sidebar */
+.content-main {
+    margin-left: 220px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+
 /* Estilos para el sidebar */
 #sidebar {
     background-color: #374672;
