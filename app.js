@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 // borrar luego de terminar la prueba
 
 app.get('/testing', (req, res) => {
-    res.render('coordinador/representante_modificar.ejs')
+    res.render('coordinador/estudiante_home.ejs')
 })
 
 app.get('/testing2', (req, res) => {

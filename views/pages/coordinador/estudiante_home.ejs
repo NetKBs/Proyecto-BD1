@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinador - Estudiantes</title>
+    <link rel="stylesheet" href="/css/init.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/header_footer.css">
+    <link rel="stylesheet" href="/css/coordinador/estudiante.css">
+    <style>
+        /* Estilos para el contenido principal cuando hay un sidebar*/
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div id="left-header">
+            <a href="#"><img src="images/logo.png" alt="logo"></a>
+            <h1>Coordinador Abiham Ramos</h1>
+        </div>
+    
+        <!-- OPCIONES DEL HEADER ACA -->
+        <div id="right-header">
+            <a href="#">Salir</a>
+        <div>
+    </header>
+    
+    <nav id="sidebar">
+        <!-- OPCIONES DE LA SIDEBAR ACA -->
+         <a href="#">Inicio</a>
+         <a href="#">Periodos</a>
+         <a href="#" >Asignaturas</a>
+         <a href="#">Cargas Académicas</a>
+         <a href="#">Inscripción</a>
+         <a href="#">Calificaciones</a>
+         <a href="#">Docentes</a>
+         <a href="#"  class="actual-link-sidebar">Estudiantes</a>
+         <a href="#" >Representantes</a>
+    </nav>
+    
+    <!-- ACÁ IRÁ EL CONTENIDO QUE SE MOSTRARÁ EN EL MEDIO DE LA PAGINA -->
+    <main class="content-main">
+        <div class="header-main">
+            <h2>Estudiantes</h2>
+            <a href="#" class="nuevo">Nuevo Estudiante</a>
+        </div>
+       
+        
+        <div class="card-buscar">
+            <h3>Buscar Estudiante</h3>
+            <form action="" method="">
+                <input type="text" name="estudiante" id="estudiante" placeholder="Ingrese cédula del estudiante">
+                <input type="submit" value="Buscar">
+            </form>
+        </div>
+
+        <div class="card-estudiante">
+            <div class="header-inside">
+                <h2>Información del Estudiante</h2>
+                <a href="#">Editar</a>
+            </div>
+            
+
+            <div class="content">
+                <div>
+                    <p><span>Estado</span> Activo</p>
+                    <p><span>Nombres y Apellidos:</span> Juan Pérez Gómez</p>
+                    <p><span>Edad:</span> 35 años</p>
+                    <p><span>Sexo:</span> Masculino</p>
+                    <p><span>Estado Civil:</span> Soltero</p>
+                    <p><span>Cedula:</span> V30766733</p>
+                </div>
+
+                <div>
+                    <p><span>Fecha de Nacimiento:</span> 15 de Julio, 1987</p>
+                    <p><span>Lugar de Nacimiento:</span> Caracas, Venezuela</p>
+                    <p><span>Dirección de Domicilio:</span> Calle 123, Urbanización Residencial, Caracas, Venezuela</p>
+                </div>
+ 
+            </div>  
+        </div>
+
+        
+        <div class="card-inscripciones">
+            <div class="header-inside">
+                <h2>Inscripciones</h2>
+            </div>
+            <!-- Acá saldrá los estudiantes que este representante representa -->
+            <table>
+                <tr>
+                    <th>Fecha de inscripción</th>
+                    <th>Año académico</th>
+                    <th>Sección</th>
+                    <th>Estado</th>
+                </tr>
+                <tr>
+                    <td>12/12/2022</td>
+                    <td>3ro</td>
+                    <td>Sección A</td>
+                    <td>Activo</td>
+                </tr>
+            </table>
+        </div>
+    
+    </main>
+    
+    
+    <footer>
+        <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
+    </footer>
+    
+</body>
+</html>
