@@ -26,6 +26,9 @@ app.get('/testing4', (req, res) => {
     res.render('docente/passwordChange')
 })
 
+app.get('/testing5', (req, res) => {
+    res.render('docente/notes')
+})
 
 
 app.get('/testing3', (req, res) => {

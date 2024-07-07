@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinador - Inicio</title>
+    <link rel="stylesheet" href="/css/init.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/header_footer.css">
+    <link rel="stylesheet" href="/css/docente/stylenotes.css">
+</head>
+<style>
+    .content-notes {
+        margin-left: 220px;
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+</style>
+<body>
+    <header>
+        <div id="left-header">
+            <a href="#"><img src="images/logo.png" alt="logo"></a>
+            <h1>Docente Ines Sanchez</h1>
+        </div>
+    
+        <!-- OPCIONES DEL HEADER ACA -->
+        <div id="right-header">
+            <a href="#">Salir</a>
+        <div>
+    </header>
+    
+    <nav id="sidebar">
+        <!-- OPCIONES DE LA SIDEBAR ACA -->
+         <a href="#">Inicio</a>
+         <a href="#">Carga De Notas</a>
+         <a href="#">Cambio De Contraseña</a>
+         
+    </nav>
+    
+    <!-- ACÁ IRÁ EL CONTENIDO QUE SE MOSTRARÁ EN EL MEDIO DE LA PAGINA -->
+    <!--... -->
+
+    <main class="content-notes">
+        <h2>Carga de Notas Académicas</h2>
+        <form>
+            <label for="materia">Materia:</label>
+            <select id="materia" name="materia">
+              <option value="">Seleccione una materia</option>
+              <option value="matematicas">Matemáticas</option>
+              <option value="lengua">Lengua</option>
+              <option value="ciencias">Ciencias</option>
+              <!-- Add more options here -->
+            </select>
+        
+            <label for="seccion">Sección:</label>
+            <select id="seccion" name="seccion">
+              <option value="">Seleccione una sección</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <!-- Add more options here -->
+            </select>
+        
+            <label for="anio">Año:</label>
+            <select id="anio" name="anio">
+              <option value="">Seleccione un año</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+              <!-- Add more options here -->
+            </select>
+        
+            <label for="alumno">Nombre del Alumno:</label>
+            <input type="text" id="alumno" name="alumno">
+        
+            <button type="button" id="buscar-alumno">Buscar Alumno</button>
+        
+            <h3>Notas</h3>
+            <table>
+              <tr>
+                <th>Lapso 1</th>
+                <td><input type="number" id="lapso1" name="lapso1" min="0" max="100"></td>
+              </tr>
+              <tr>
+                <th>Lapso 2</th>
+                <td><input type="number" id="lapso2" name="lapso2" min="0" max="100"></td>
+              </tr>
+              <tr>
+                <th>Lapso 3</th>
+                <td><input type="number" id="lapso3" name="lapso3" min="0" max="100"></td>
+              </tr>
+              <tr>
+                <th>Nota Final</th>
+                <td><input type="number" id="nota-final" name="nota-final" min="0" max="100"></td>
+              </tr>
+            </table>
+        
+            <button type="submit" id="guardar-notas">Guardar Notas</button>
+          </form>
+      </main>
+  
+  <!--... -->
+    
+    <footer>
+        <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
+    </footer>
+    
+</body>
+</html>
