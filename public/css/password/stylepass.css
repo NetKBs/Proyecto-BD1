@@ -1,0 +1,66 @@
+.content-pass{
+
+    & h1, h2 {
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    & h1 {
+        font-size: 60px;
+    }
+    
+    & h2 {
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+
+
+    .password-form-container {
+        max-width: 400px; /* ancho del contenedor */
+        margin: 40px auto; /* centrar horizontalmente */
+        padding: 20px; /* espacio entre el contenedor y el formulario */
+        background-color: #f7f7f7; /* color de fondo */
+        border: 1px solid #ddd; /* borde */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* sombra */
+        border-radius: 10px; /* esquinas redondeadas */
+      }
+      
+      .password-form-container h2 {
+        text-align: center; /* centrar el título */
+        margin-bottom: 20px; /* espacio entre el título y el formulario */
+      }
+      
+      .password-form-container label {
+        display: block; /* mostrar etiquetas en bloque */
+        margin-bottom: 10px; /* espacio entre etiquetas */
+      }
+      
+      .password-form-container input[type="password"] {
+        width: 100%; /* ancho del input */
+        padding: 10px; /* espacio entre el input y el borde */
+        margin-bottom: 20px; /* espacio entre inputs */
+        border: 1px solid #ccc; /* borde */
+      }
+      
+      .password-form-container button[type="submit"] {
+        background-color:rgba(5, 94, 247, 0.518); /* color de fondo del botón */
+        color: #fff; /* color de texto del botón */
+        padding: 10px 20px; /* espacio entre el botón y el borde */
+        border: none; /* no mostrar borde */
+        border-radius: 5px; /* esquinas redondeadas */
+        cursor: pointer; /* cursor de mano */
+      }
+      
+      .password-form-container button[type="submit"]:hover {
+        background-color: #3e8e41; /* color de fondo del botón al pasar el mouse */
+      }
+
+
+
+
+
+
+
+
+
+}
