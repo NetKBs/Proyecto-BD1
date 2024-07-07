@@ -27,8 +27,19 @@ app.get('/testing', (req, res) => {
     res.render('coordinador/inscripcion_home')
 })
 
+
 app.get('/testing2', (req, res) => {
     res.render('signup.ejs')
+})
+
+app.get('/testing3',(req, res)=>{
+    res.render('representante/home')
+
+})
+
+app.get('/testing4',(req, res)=>{
+    res.render('representante/consultar_notas')
+
 })
 
 // routers
