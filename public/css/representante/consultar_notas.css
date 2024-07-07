@@ -1,0 +1,84 @@
+
+h2 {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 30px;
+    
+}
+
+.card-seleccionar select {
+    width: 150px; 
+    text-align: center; 
+    margin-right: 20px;
+}
+
+.card-seleccionar{
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    display: flex;
+    align-items: center;
+    
+    
+    & h3 {
+        margin-right: 10px;
+        margin-left: 10px;
+        
+        
+    }
+
+    & input[type="submit"] {
+        background-color: #011140;
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-left: 20px;
+    }
+
+    & input[type="submit"]:hover {
+        background-color: #0056b3;
+        
+        
+    }
+}
+
+
+
+.tabla {
+    background-color: #fff;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    
+}
+
+.tabla table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+    & th, td {
+        padding: 10px;
+       
+        text-align: center;
+    }
+
+    & th {
+        background-color: #e0e0e0;
+        font-weight: bold;
+    }
+
+    & tr:nth-child(odd) {
+        background-color: #f5f5f5;
+    }
+
+}

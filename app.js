@@ -22,13 +22,33 @@ app.get('/', (req, res) => {
 
 // HACER PRUEBA PARA RENDERIZAR SUS VISTAS ACÁ
 // borrar luego de terminar la prueba
+app.get('/testing4', (req, res) => {
+    res.render('docente/passwordChange')
+})
+
+
+
+app.get('/testing3', (req, res) => {
+    res.render('docente/home')
+})
 
 app.get('/testing', (req, res) => {
     res.render('coordinador/estudiante_home.ejs')
 })
 
+
 app.get('/testing2', (req, res) => {
     res.render('signup.ejs')
+})
+
+app.get('/testing3',(req, res)=>{
+    res.render('representante/home')
+
+})
+
+app.get('/testing4',(req, res)=>{
+    res.render('representante/consultar_notas')
+
 })
 
 // routers
