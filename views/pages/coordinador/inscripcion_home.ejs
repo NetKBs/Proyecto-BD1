@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coordinador - Asignaturas</title>
+    <title>Coordinador - Inscripciones</title>
     <link rel="stylesheet" href="/css/init.css">
     <link rel="stylesheet" href="/css/sidebar.css">
     <link rel="stylesheet" href="/css/header_footer.css">
@@ -41,8 +41,33 @@
     
     <!-- ACÁ IRÁ EL CONTENIDO QUE SE MOSTRARÁ EN EL MEDIO DE LA PAGINA -->
     <main class="content-main">
-        <h2>Inscribir Estudiante</h2>
-        
+        <h2>Inscribir Estudiante a Nuevo Año Escolar</h2>
+
+        <form action="" method="POST">
+
+            <p>Periodo Escolar: 2022-2023</p>
+
+            <label for="estudiante">Cedula del estudiante</label>
+            <input type="text" name="estudiante" id="estudiante" placeholder="Solo números">
+            <label for="grado">Seleccionar grado de inscripción</label>
+            <select id="grado">
+                <option value="1">1er Año</option>
+                <option value="2">2do Año</option>
+                <option value="3">3cer Año</option>
+                <option value="4">4to Año</option>
+                <option value="5">5to Año</option>
+            </select>
+            <label for="seccion">Seleccionar seccion</label>
+            <select id="seccion">
+                <option value="A">Seccion A</option>
+                <option value="B">Seccion B</option>
+                <option value="C">Seccion C</option>
+                <option value="D">Seccion D</option>
+                <option value="E">Seccion E</option>
+            </select>
+
+            <input type="submit" value="Inscribir">
+        </form>
     </main>
     
     
