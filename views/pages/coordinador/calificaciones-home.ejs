@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="init.css">
+<link rel="stylesheet" href="sidebar.css">
+<link rel="stylesheet" href="header_footer.css">
+<link rel="stylesheet" href="calificaciones.css">
+<meta charset="UTF-8">
+</head>
+
+<body>
+  
+<header>
+    <div id="left-header">
+        <a href="#"><img src="/images/logo.png" alt="logo"></a>
+        <h1>Santa Marta</h1>
+    </div>
+
+    <!-- OPCIONES DEL HEADER ACA -->
+    <div id="right-header">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    <div>
+</header>
+
+<nav id="sidebar">
+    <!-- OPCIONES DE LA SIDEBAR ACA -->
+     <a href="#">Inicio</a>
+     <a href="#">Períodos</a>
+     <a href="#">Asignaturas</a>
+     <a href="#">Carga Académica</a>
+     <a href="#" class="actual-link-sidebar">Calificaciones</a>
+     <a href="#">Docentes</a>
+     <a href="#">Estudiantes</a>
+     <a href="#">Representantes</a>
+</nav>
+
+<main class="content-main">
+
+<h2>Calificaciones</h2>
+<button class="ButtonRegresar">Regresar</button>
+
+<h3>Boletin</h3>
+
+<section class="Boletin">
+<label for="CedulaAlumno">Cedula del Alumno</label>
+<input type="text">
+<label for="Años">Año</label>
+<select name="Años" id="">
+    <option value="">...</option>
+    <option value="">1</option>
+    <option value="">2</option>
+    <option value="">3</option>
+    // ...
+  </select>
+  <button class="ButtonConsultar">Consultar</button>
+</section>
+
+<h3>Notas Finales de un Estudiante</h3>
+
+<section class="NotasFinales">
+    <label for="CedulaAlumno">Cedula del Alumno</label>
+    <input type="text">
+      <button class="ButtonConsultar">Consultar</button>
+    </section>
+
+<h3>Notas Finales de una Clase</h3>
+
+<section class="NotasPorClase">
+       <label for="SelectPeriodo">Seleccione un Período</label>
+    <select name="SelectPeriodo" id="">
+        <option value="">...</option>
+        <option value="">2022-2023</option>
+        <option value="">2023-2024</option>
+        <option value="">2024-2025</option>
+        // ...
+      </select>
+      <label for="SelectSeccion">Seleccione una Sección</label>
+    <select name="SelectSeccion" id="">
+        <option value="">...</option>
+        <option value="">A</option>
+        <option value="">B</option>
+        <option value="">C</option>
+        // ...
+      </select>
+      <label for="SelectMateria">Seleccione una Materia</label>
+    <select name="SelectMateria" id="">
+        <option value="">...</option>
+        <option value="">Matemáticas</option>
+        <option value="">Inglés</option>
+        <option value="">Lenguaje</option>
+        // ...
+      </select>
+          <button class="ButtonConsultar">Consultar</button>
+        </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+
+</html>

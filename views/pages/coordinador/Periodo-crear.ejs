@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="init.css">
+<link rel="stylesheet" href="sidebar.css">
+<link rel="stylesheet" href="header_footer.css">
+<link rel="stylesheet" href="crearPeriodo.css">
+<meta charset="UTF-8">
+
+
+<style>
+    /* Estilos para el contenido principal cuando hay un sidebar*/
+    .content-main {
+        margin-left: 220px;
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+</style>
+</head>
+
+<body>
+<header>
+    <div id="left-header">
+        <a href="#"><img src="/images/logo.png" alt="logo"></a>
+        <h1>Santa Marta</h1>
+    </div>
+
+    <!-- OPCIONES DEL HEADER ACA -->
+    <div id="right-header">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    <div>
+</header>
+
+<nav id="sidebar">
+    <!-- OPCIONES DE LA SIDEBAR ACA -->
+     <a href="#">Inicio</a>
+     <a href="#" class="actual-link-sidebar">Períodos</a>
+     <a href="#">Asignaturas</a>
+     <a href="#">Cargas Académicas</a>
+     <a href="#">Calificaciones</a>
+     <a href="#">Docentes</a>
+     <a href="#">Estudiantes</a>
+     <a href="#">Representantes</a>
+</nav>
+
+<main class="content-main">
+<div class="card-agregar">
+    <button>Regresar</button>
+    <h3>Nombre del período</h3>
+    <form action="" method="POST">
+        <input type="text" name="periodo" id="periodo">
+
+    </form>
+    <h3>Agregar Nueva Sección</h3>
+    <form action="" method="POST">
+        <label for="section">Nombre de la Sección</label>
+        <input type="text" name="section" id="section">
+        <input type="submit" value="Agregar">
+    </form>
+</div>
+
+<div class="card-tabla">
+    <h3>Secciones Creadas</h3>
+    <!--Crear una tabla con codigo, nombre y años/grados en los que se da la materia-->
+    <table>
+        <tr>
+            <th>Nombre</th>
+        </tr>
+
+        <tr>
+            <td>A</td>
+            <td><button class="edit-button">Modificar</button></td>
+            <td><button class="edit-button">Eliminar</button></td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td><button class="edit-button">Modificar</button></td>
+            <td><button class="edit-button">Eliminar</button></td>
+        </tr>
+    </table>
+  </div>
+</main>
+
+
+<footer>
+    <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>

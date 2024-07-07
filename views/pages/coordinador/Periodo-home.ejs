@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<link rel="stylesheet" href="init.css">
+<link rel="stylesheet" href="sidebar.css">
+<link rel="stylesheet" href="header_footer.css">
+<link rel="stylesheet" href="periodo.css">
+<meta charset="UTF-8">
+
+
+<style>
+    /* Estilos para el contenido principal cuando hay un sidebar*/
+    .content-main {
+        margin-left: 220px;
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+</style>
+
+</head>
+
+<body>
+<header>
+    <div id="left-header">
+        <a href="#"><img src="/images/logo.png" alt="logo"></a>
+        <h1>Santa Marta</h1>
+    </div>
+
+    <!-- OPCIONES DEL HEADER ACA -->
+    <div id="right-header">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    <div>
+</header>
+
+<nav id="sidebar">
+    <!-- OPCIONES DE LA SIDEBAR ACA -->
+     <a href="#">Inicio</a>
+     <a href="#" class="actual-link-sidebar">Períodos</a>
+     <a href="#">Asignaturas</a>
+     <a href="#">Cargas Académicas</a>
+     <a href="#">Calificaciones</a>
+     <a href="#">Docentes</a>
+     <a href="#">Estudiantes</a>
+     <a href="#">Representantes</a>
+</nav>
+
+<!-- ACÁ IRÁ EL CONTENIDO QUE SE MOSTRARÁ EN EL MEDIO DE LA PAGINA -->
+<main class="content-main">
+    
+    <h2>Crear Período</h2>
+
+
+    <div class="card-tabla">
+        <h3>Períodos Creados</h3>
+        <!--Crear una tabla con codigo, nombre y años/grados en los que se da la materia-->
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Período</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Final</th>
+                <th>Estado</th>
+                <th>Modificar</th>
+            </tr>
+
+</main>
+
+
+<footer>
+    <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
