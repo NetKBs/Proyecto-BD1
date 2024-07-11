@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="init.css">
+<link rel="stylesheet" href="sidebar.css">
+<link rel="stylesheet" href="header_footer.css">
+<link rel="stylesheet" href="cargaAcademica.css">
+<meta charset="UTF-8">
+</head>
+<body>
+<header>
+    <div id="left-header">
+        <a href="#"><img src="/images/logo.png" alt="logo"></a>
+        <h1>Santa Marta</h1>
+    </div>
+
+    <!-- OPCIONES DEL HEADER ACA -->
+    <div id="right-header">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    <div>
+</header>
+
+<nav id="sidebar">
+    <!-- OPCIONES DE LA SIDEBAR ACA -->
+     <a href="#">Inicio</a>
+     <a href="#">Períodos</a>
+     <a href="#">Asignaturas</a>
+     <a href="#" class="actual-link-sidebar">Carga Académica</a>
+     <a href="#">Calificaciones</a>
+     <a href="#">Docentes</a>
+     <a href="#">Estudiantes</a>
+     <a href="#">Representantes</a>
+</nav>
+
+<main class="content-main">
+
+<button>Crear Carga</button>
+
+<form action="BuscarCarga">
+
+<label for="CedulaProfesor">Cédula del Docente</label>
+<input type="text"><button>Buscar</button>
+
+</form>
+
+<div class="card-tabla">
+    <h3>Profesor: </h3>
+    <!--Crear una tabla con codigo, nombre y años/grados en los que se da la materia-->
+    <table>
+        <tr>
+            <th>Materia</th>
+            <th>Año</th>
+            <th>Sección</th>
+        </tr>
+        <tr>
+            <td>Lenguaje</td>
+            <td>2</td>
+            <td>B</td>
+            <td><button class="edit-button">Editar</button></td>
+        </tr>
+        <tr>
+            <td>Inglés</td>
+            <td>4</td>
+            <td>A</td>
+            <td><button class="edit-button">Editar</button></td>
+        </tr>
+
+
+</main>
+
+<footer>
+    <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>

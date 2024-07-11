@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="init.css">
+<link rel="stylesheet" href="sidebar.css">
+<link rel="stylesheet" href="header_footer.css">
+<link rel="stylesheet" href="registroDocente.css">
+<meta charset="UTF-8">
+</head>
+
+<body>
+<header>
+    <div id="left-header">
+        <a href="#"><img src="/images/logo.png" alt="logo"></a>
+        <h1>Santa Marta</h1>
+    </div>
+
+    <!-- OPCIONES DEL HEADER ACA -->
+    <div id="right-header">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    <div>
+</header>
+
+<nav id="sidebar">
+    <!-- OPCIONES DE LA SIDEBAR ACA -->
+     <a href="#">Inicio</a>
+     <a href="#">Períodos</a>
+     <a href="#">Asignaturas</a>
+     <a href="#">Carga Académica</a>
+     <a href="#">Calificaciones</a>
+     <a href="#" class="actual-link-sidebar">Docentes</a>
+     <a href="#">Estudiantes</a>
+     <a href="#">Representantes</a>
+</nav>
+
+<main class="content-main">
+
+<button class="ButtonRegresar">Regresar</button>
+
+<div class="card-representante">
+    <div class="header-inside">
+        <h2>Registro Docente</h2>
+    </div>
+    <form action="">
+        <div class="content">
+            <div>
+                <label for="primer_nombre">Primer Nombre</label>
+                <input type="text" id="primer_nombre" name="primer_nombre">
+                <label for="segundo_nombre">Segundo Nombre</label>
+                <input type="text" id="segundo_nombre" name="segundo_nombre">
+                <label for="primer_apellido">Primer Apellido</label>
+                <input type="text" id="primer_apellido" name="primer_apellido">
+                <label for="segundo_apellido">Segundo Apellido</label>
+                <input type="text" id="segundo_apellido" name="segundo_apellido">
+
+                <label for="genero">Género</label>
+                <select name="genero">
+                    <option value="masculino">Masculino</option>
+                    <option value="femenino">Femenino</option>
+                </select>
+
+                <label for="cedula">Cédula</label>
+                <input type="text" id="cedula" name="cedula">
+
+                <label for="estado_civil">Estado Cívil</label>
+                <select name="estado_civil">
+                    <option value="soltero">Soltero</option>
+                    <option value="casado">Casado</option>
+                    <option value="divorciado">Divorciado</option>
+                </select>
+
+                <label for="cargo_trabajo">Cargo de Trabajo</label>
+                <input type="text" id="cargo_trabajo" name="cargo_trabajo">
+                <label for="carrera">Carrera</label>
+                <input type="text" id="carrera" name="carrera">
+                <label for="lugar_trabajo">Lugar de Trabajo</label>
+                <input type="text" id="lugar_trabajo" name="lugar_trabajo">
+
+                <label for="tlfno">Teléfono</label>
+                <input type="text" id="tlfno" name="tlfno">
+
+                <label for="tlfno2">Teléfono Alternativo</label>
+                <input type="text" id="tlfno2" name="tlfno2">
+              
+            </div>
+
+            <div>
+                <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+
+                <label for="ciudad_nacimiento">Ciudad de Nacimiento</label>
+                <input type="text" id="ciudad_nacimiento" name="ciudad_nacimiento">
+                <label for="estado_nacimiento">Estado de Nacimiento</label>
+                <input type="text" id="estado_nacimiento" name="estado_nacimiento">
+                <label for="pais_nacimiento" >País de Nacimiento</label>
+                <input type="text" id="pais_nacimiento" name="pais_nacimiento">
+
+                <label for="direccion_domicilio">Dirección Domicilio</label>
+                <input type="text" id="direccion_domicilio" name="direccion_domicilio">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+                <label for="email2">Email Alternativo</label>
+                <input type="email" id="email2" name="email2">
+
+            </div>
+        </div>
+        <input type="submit" value="Registrar">
+    </form>
+</div>
+
+
+
+
+</main>
+
+<footer>
+    <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>

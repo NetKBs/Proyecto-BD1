@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="init.css">
+<link rel="stylesheet" href="sidebar.css">
+<link rel="stylesheet" href="header_footer.css">
+<link rel="stylesheet" href="Docente.css">
+<meta charset="UTF-8">
+</head>
+
+<body>
+<header>
+    <div id="left-header">
+        <a href="#"><img src="/images/logo.png" alt="logo"></a>
+        <h1>Santa Marta</h1>
+    </div>
+
+    <!-- OPCIONES DEL HEADER ACA -->
+    <div id="right-header">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    <div>
+</header>
+
+<nav id="sidebar">
+    <!-- OPCIONES DE LA SIDEBAR ACA -->
+     <a href="#">Inicio</a>
+     <a href="#">Períodos</a>
+     <a href="#">Asignaturas</a>
+     <a href="#">Carga Académica</a>
+     <a href="#">Calificaciones</a>
+     <a href="#" class="actual-link-sidebar">Docentes</a>
+     <a href="#">Estudiantes</a>
+     <a href="#">Representantes</a>
+</nav>
+
+<main class="content-main">
+
+<h2>Docentes</h2>
+<button class="ButtonRegistrar">Registrar Docente</button>
+
+<form action="BuscarCarga">
+
+<label for="CedulaProfesor">Cédula del Docente</label>
+<input type="text">
+</form>
+
+<label for="Estado">Estado</label>
+<select name="Estado" id="">
+    <option value="">...</option>
+    <option value="">Activo</option>
+    <option value="">Inactivo</option>
+    // ...
+  </select>
+</form>
+
+<div class="card-tabla">
+    <h3>Listado de Docentes</h3>
+    <!--Crear una tabla con codigo, nombre y años/grados en los que se da la materia-->
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Cédula</th>
+            <th>Teléfono</th>
+            <th>Fecha Ingreso</th>
+            <th>Estado</th>
+        </tr>
+        <tr>
+            <td>Abiham Ramos</td>
+            <td>30657453</td>
+            <td>04123456789</td>
+            <td>28/04/2008</td>
+            <td>Activo</td>
+            <td><button class="edit-button">Editar</button></td>
+        </tr>
+
+    </table>
+            
+</div>
+
+</main>
+
+<footer>
+    <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>

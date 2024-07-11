@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="init.css">
+<link rel="stylesheet" href="sidebar.css">
+<link rel="stylesheet" href="header_footer.css">
+<link rel="stylesheet" href="crearCarga.css">
+<meta charset="UTF-8">
+</head>
+<body>
+<header>
+    <div id="left-header">
+        <a href="#"><img src="/images/logo.png" alt="logo"></a>
+        <h1>Santa Marta</h1>
+    </div>
+
+    <!-- OPCIONES DEL HEADER ACA -->
+    <div id="right-header">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    <div>
+</header>
+
+<nav id="sidebar">
+    <!-- OPCIONES DE LA SIDEBAR ACA -->
+     <a href="#">Inicio</a>
+     <a href="#">Períodos</a>
+     <a href="#">Asignaturas</a>
+     <a href="#" class="actual-link-sidebar">Carga Académica</a>
+     <a href="#">Calificaciones</a>
+     <a href="#">Docentes</a>
+     <a href="#">Estudiantes</a>
+     <a href="#">Representantes</a>
+</nav>
+
+<main class="content-main">
+
+<h2>Crear Carga Académica</h2>
+<button class="ButtonRegresar">Regresar</button>
+
+<form action="BuscarCarga">
+
+<label for="CedulaProfesor">Cédula del Docente</label>
+<input type="text">
+</form>
+
+<form action="Desplegables">
+<label for="Materias">Materias</label>
+<select name="Materias" id="">
+    <option value="">...</option>
+    <option value="">Matemáticas</option>
+    <option value="">Lenguaje</option>
+    <option value="">Inglés</option>
+    <option value="">Historia de Venezuela</option>
+    <option value="">Historia Universal</option>
+    <option value="">Física</option>
+    <option value="">Química</option>
+    <option value="">Geografía</option>
+    <option value="">Educación Familiar</option>
+    <option value="">Ciencias Naturales</option>
+    <option value="">Educación Artística</option>
+    <option value="">Educación Física</option>
+    // ...
+  </select>
+
+<label for="Años">Años</label>
+<select name="Años" id="">
+    <option value="">...</option>
+    <option value="">1</option>
+    <option value="">2</option>
+    <option value="">3</option>
+    <option value="">4</option>
+    <option value="">5</option>
+    // ...
+  </select>
+
+<label for="Secciones">Secciones</label>
+<select name="Secciones" id="">
+    <option value="">...</option>
+    <option value="">A</option>
+    <option value="">B</option>
+    <option value="">C</option>
+    // ...
+  </select>
+</form>
+
+<button class="ButtonGuardar">Guardar</button>
+
+</main>
+
+<footer>
+    <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
