@@ -1,18 +1,26 @@
 const express = require ('express')
 const router = express.Router()
 const coordinadorControllers = require('../controllers/coordinadorControllers')
+const representanteControllers = require('../controllers/representanteControllers')
+const estudianteControllers = require('../controllers/estudianteControllers')
 
 router.get('/', coordinadorControllers.coordinador);
 
 // Rutas para manejar representantes
-router.get('/representante', coordinadorControllers.representante);
-router.get('/representante/crear', coordinadorControllers.crearRepresentanteView);
-router.post('/representante/crear', coordinadorControllers.crearRepresentante);
-router.get('/representante/buscar', coordinadorControllers.representanteByCedula);
-router.get('/representante/editar/:id', coordinadorControllers.editarRepresentanteView);
-router.post('/representante/editar/:id', coordinadorControllers.editarRepresentante);
+router.get('/representante', representanteControllers.representante);
+router.get('/representante/crear', representanteControllers.crearRepresentanteView);
+router.post('/representante/crear', representanteControllers.crearRepresentante);
+router.get('/representante/buscar', representanteControllers.representanteByCedula);
+router.get('/representante/editar/:id', representanteControllers.editarRepresentanteView);
+router.post('/representante/editar/:id', representanteControllers.editarRepresentante);
 
-
+// Rutas para manejar estudiantes
+router.get('/estudiante', estudianteControllers.estudiante);
+router.get('/estudiante/crear', estudianteControllers.crearEstudianteView);
+router.post('/estudiante/crear', estudianteControllers.crearEstudiante);
+router.get('/estudiante/buscar', estudianteControllers.estudianteByCedula);
+router.get('/estudiante/editar/:id', estudianteControllers.editarEstudianteView);
+router.post('/estudiante/editar/:id', estudianteControllers.editarEstudiante);
 
 // Ruta para coordinador por ID
 //router.get('/:id', coordinadorControllers.coordinador);

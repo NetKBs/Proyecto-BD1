@@ -16,7 +16,7 @@
 <body>
     <header>
         <div id="left-header">
-            <a href="#"><img src="images/logo.png" alt="logo"></a>
+            <a href="#"><img src="/images/logo.png" alt="logo"></a>
             <h1>Coordinador Abiham Ramos</h1>
         </div>
     
@@ -42,7 +42,7 @@
     <!-- ACÁ IRÁ EL CONTENIDO QUE SE MOSTRARÁ EN EL MEDIO DE LA PAGINA -->
     <main class="content-main">
         <div class="header-main">
-            <a href="#" class="nuevo">Regresar</a>
+            <a href="/coordinador/estudiante" class="nuevo">Regresar</a>
         </div>
        
         <div class="card-estudiante">
@@ -50,7 +50,7 @@
                 <h2>Crear Estudiante</h2>
             </div>
 
-            <form action="">
+            <form action="/coordinador/estudiante/crear" method="POST">
                 <div class="content">
                     <div>
                         <label for="primer_nombre">Primer Nombre</label>
@@ -64,8 +64,8 @@
     
                         <label for="genero">Genero</label>
                         <select name="genero">
-                            <option value="masculino">Masculino</option>
-                            <option value="femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
                         </select>
     
                         <label for="cedula">Cedula</label>
@@ -73,9 +73,9 @@
     
                         <label for="estado_civil">Estado Civil</label>
                         <select name="estado_civil">
-                            <option value="soltero">Soltero</option>
-                            <option value="casado">Casado</option>
-                            <option value="divorciado">Divorciado</option>
+                            <option value="Soltero">Soltero</option>
+                            <option value="Casado">Casado</option>
+                            <option value="Divorciado">Divorciado</option>
                         </select>
     
                     </div>
@@ -93,6 +93,9 @@
     
                         <label for="direccion_domicilio">Direccion Domicilio</label>
                         <input type="text" id="direccion_domicilio" name="direccion_domicilio">
+
+                        <label for="discapacidad">Discapacidad</label>
+                        <input type="text"  name="discapacidad">
     
                     </div>
                 </div>

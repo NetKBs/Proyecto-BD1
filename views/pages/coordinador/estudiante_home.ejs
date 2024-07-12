@@ -16,7 +16,7 @@
 <body>
     <header>
         <div id="left-header">
-            <a href="#"><img src="images/logo.png" alt="logo"></a>
+            <a href="#"><img src="/images/logo.png" alt="logo"></a>
             <h1>Coordinador Abiham Ramos</h1>
         </div>
     
@@ -43,50 +43,56 @@
     <main class="content-main">
         <div class="header-main">
             <h2>Estudiantes</h2>
-            <a href="#" class="nuevo">Nuevo Estudiante</a>
+            <a href="/coordinador/estudiante/crear" class="nuevo">Nuevo Estudiante</a>
         </div>
        
         
         <div class="card-buscar">
             <h3>Buscar Estudiante</h3>
-            <form action="" method="">
+            <form action="/coordinador/estudiante/buscar" method="GET">
                 <input type="text" name="estudiante" id="estudiante" placeholder="Ingrese cédula del estudiante">
                 <input type="submit" value="Buscar">
             </form>
         </div>
 
+        <% if (data.estudiante){ %> 
         <div class="card-estudiante">
             <div class="header-inside">
                 <h2>Información del Estudiante</h2>
-                <a href="#">Editar</a>
+                <a href="/coordinador/estudiante/editar/<%= data.estudiante.id %>">Editar</a>
             </div>
             
 
             <div class="content">
                 <div>
-                    <p><span>Estado</span> Activo</p>
-                    <p><span>Nombres y Apellidos:</span> Juan Pérez Gómez</p>
-                    <p><span>Edad:</span> 35 años</p>
-                    <p><span>Sexo:</span> Masculino</p>
-                    <p><span>Estado Civil:</span> Soltero</p>
-                    <p><span>Cedula:</span> V30766733</p>
+                    <p><span>Estado</span> <%=data.estudiante.estado_academico%></p>
+                    <p>
+                        <span>Nombres y Apellidos:</span>  
+                        <%= data.estudiante.primer_nombre %> <%= data.estudiante.segundo_nombre %>
+                        <%= data.estudiante.primer_apellido %> <%= data.estudiante.segundo_apellido %></p>
+                    </p>
+                    <p><span>Edad:</span><%=data.estudiante.edad%></p>
+                    <p><span>Sexo:</span> <%=data.estudiante.genero%></p>
+                    <p><span>Estado Civil:</span> <%=data.estudiante.estado_civil%></p>
+                    <p><span>Cedula:</span> <%=data.estudiante.cedula%></p>
                 </div>
 
                 <div>
-                    <p><span>Fecha de Nacimiento:</span> 15 de Julio, 1987</p>
-                    <p><span>Lugar de Nacimiento:</span> Caracas, Venezuela</p>
-                    <p><span>Dirección de Domicilio:</span> Calle 123, Urbanización Residencial, Caracas, Venezuela</p>
+                    <p><span>Fecha de Nacimiento:</span> <%=data.estudiante.fecha_nacimiento%></p>
+                    <p><span>Lugar de Nacimiento:</span> <%=data.estudiante.ciudad_nacimiento%>, <%=data.estudiante.estado_nacimiento%>,<%=data.estudiante.pais_nacimiento%></p>
+                    <p><span>Dirección de Domicilio:</span> <%=data.estudiante.casa_direccion%></p>
+                    <p><span>Discapacidad:</span> <%=data.estudiante.discapacidad%></p>
                 </div>
  
             </div>  
         </div>
-
+        <% } %>
         
         <div class="card-inscripciones">
             <div class="header-inside">
                 <h2>Inscripciones</h2>
             </div>
-            <!-- Acá saldrá los estudiantes que este representante representa -->
+            <!-- Acá saldrá los estudiantes que este estudiante representa -->
             <table>
                 <tr>
                     <th>Fecha de inscripción</th>

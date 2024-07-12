@@ -16,7 +16,7 @@
 <body>
     <header>
         <div id="left-header">
-            <a href="#"><img src="images/logo.png" alt="logo"></a>
+            <a href="#"><img src="/images/logo.png" alt="logo"></a>
             <h1>Coordinador Abiham Ramos</h1>
         </div>
     
@@ -42,7 +42,7 @@
     <!-- ACÁ IRÁ EL CONTENIDO QUE SE MOSTRARÁ EN EL MEDIO DE LA PAGINA -->
     <main class="content-main">
         <div class="header-main">
-            <a href="#" class="nuevo">Regresar</a>
+            <a href="/coordinador/estudiante" class="nuevo">Regresar</a>
         </div>
        
         <div class="card-estudiante">
@@ -50,56 +50,59 @@
                 <h2>Actualizar Estudiante</h2>
             </div>
 
-            <form action="">
+            <form action="/coordinador/estudiante/editar/<%= data.estudiante.id %>" method="POST">
                 <div class="content">
                     <div>
                         <label for="primer_nombre">Primer Nombre</label>
-                        <input type="text" id="primer_nombre" name="primer_nombre">
+                        <input type="text" id="primer_nombre" name="primer_nombre" value=<%= data.estudiante.primer_nombre %>>
                         <label for="segundo_nombre">Segundo Nombre</label>
-                        <input type="text" id="segundo_nombre" name="segundo_nombre">
+                        <input type="text" id="segundo_nombre" name="segundo_nombre" value=<%= data.estudiante.segundo_nombre %>>
                         <label for="primer_apellido">Primer Apellido</label>
-                        <input type="text" id="primer_apellido" name="primer_apellido">
+                        <input type="text" id="primer_apellido" name="primer_apellido" value=<%= data.estudiante.primer_apellido %>>
                         <label for="segundo_apellido">Segundo Apellido</label>
-                        <input type="text" id="segundo_apellido" name="segundo_apellido">
+                        <input type="text" id="segundo_apellido" name="segundo_apellido" value=<%= data.estudiante.segundo_apellido %>>
     
                         <label for="genero">Genero</label>
                         <select name="genero">
-                            <option value="masculino">Masculino</option>
-                            <option value="femenino">Femenino</option>
+                            <option value="Masculino" <%= data.estudiante.genero === 'Masculino' ? 'selected' : '' %>>Masculino</option>
+                            <option value="Femenino" <%= data.estudiante.genero === 'Femenino' ? 'selected' : '' %>>Femenino</option>
                         </select>
     
                         <label for="cedula">Cedula</label>
-                        <input type="text" id="cedula" name="cedula">
+                        <input type="text" id="cedula" name="cedula" value=<%= data.estudiante.cedula %>>
     
                         <label for="estado_civil">Estado Civil</label>
                         <select name="estado_civil">
-                            <option value="soltero">Soltero</option>
-                            <option value="casado">Casado</option>
-                            <option value="divorciado">Divorciado</option>
+                            <option value="Soltero" <%= data.estudiante.estado_civil === 'Soltero' ? 'selected' : '' %>>Soltero</option>
+                            <option value="Casado" <%= data.estudiante.estado_civil === 'Casado' ? 'selected' : '' %>>Casado</option>
+                            <option value="Divorciado" <%= data.estudiante.estado_civil === 'Divorciado' ? 'selected' : '' %>>Divorciado</option>
                         </select>
     
                     </div>
     
                     <div>
                         <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value=<%= data.estudiante.fecha_nacimiento %>>
     
                         <label for="ciudad_nacimiento">Ciudad de Nacimiento</label>
-                        <input type="text" id="ciudad_nacimiento" name="ciudad_nacimiento">
+                        <input type="text" id="ciudad_nacimiento" name="ciudad_nacimiento" value=<%= data.estudiante.ciudad_nacimiento %>>
                         <label for="estado_nacimiento">Estado de Nacimiento</label>
-                        <input type="text" id="estado_nacimiento" name="estado_nacimiento">
+                        <input type="text" id="estado_nacimiento" name="estado_nacimiento" value=<%= data.estudiante.estado_nacimiento %>>
                         <label for="pais_nacimiento" >Pais de Nacimiento</label>
-                        <input type="text" id="pais_nacimiento" name="pais_nacimiento">
+                        <input type="text" id="pais_nacimiento" name="pais_nacimiento" value=<%= data.estudiante.pais_nacimiento %>>
     
                         <label for="direccion_domicilio">Direccion Domicilio</label>
-                        <input type="text" id="direccion_domicilio" name="direccion_domicilio">
-    
+                        <input type="text" id="direccion_domicilio" name="direccion_domicilio" value=<%= data.estudiante.casa_direccion %>>
+                        
+                        <label for="discapacidad">Discapacidad</label>
+                        <input type="text"  name="discapacidad" value=<%= data.estudiante.discapacidad %>>
+
                         <label for="estado">Estado</label>
                         <select name="estado">
-                            <option value="Activo">Activo</option>
-                            <option value="Suspendido">Suspendido</option>
-                            <option value="Graduado">Graduado</option>
-                            <option value="Inactivo">Inactivo</option>
+                            <option value="Activo" <%= data.estudiante.estado_academico === 'Activo' ? 'selected' : '' %>>Activo</option>
+                            <option value="Suspendido" <%= data.estudiante.estado_academico === 'Suspendido' ? 'selected' : '' %>>Suspendido</option>
+                            <option value="Graduado" <%= data.estudiante.estado_academico === 'Graduadoo' ? 'selected' : '' %>>Graduado</option>
+                            <option value="Inactivo" <%= data.estudiante.estado_academico === 'Inactivo' ? 'selected' : '' %>>Inactivo</option>
                         </select>
                     </div>
 
