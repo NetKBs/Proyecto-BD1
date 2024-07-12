@@ -198,3 +198,145 @@ exports.representanteById = async (id) => {
     }
 }
 
+
+exports.crearRepresentado = async (representante_id, estudiante_id) => {
+    try {
+        return new Promise((resolve, reject) => {
+            db.run(
+                `INSERT INTO representante_estudiante (
+                    representante_id, estudiante_id
+                ) 
+                VALUES (?, ?)`, 
+                [representante_id, estudiante_id],
+            
+                (err, row) => {
+                    if (err) {
+                        console.log("Error al insertar representante", err)
+                        reject(new Error(`Error al insertar representante ${err}`));
+                    } else {
+                        resolve(row);
+                    }
+                }
+            );
+        })
+
+    } catch (error) {
+        console.error(error.message);
+        throw error
+    }
+}
+
+exports.buscarRepresentadoByRepresentanteId = async (representante_id) => {
+    try {
+        return new Promise ((resolve, reject) => {
+            db.all(
+                `
+                SELECT * FROM representante_estudiante 
+                INNER JOIN estudiante ON representante_estudiante.estudiante_id = estudiante.id 
+                INNER JOIN persona ON estudiante.datos_personales_id = persona.id
+                WHERE representante_estudiante.representante_id = ?
+                `, 
+                [representante_id], 
+                (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(rows);
+                    }
+                })
+        })
+
+    } catch (error) {
+        console.error(error.message);
+        throw error
+    }
+}
+
+exports.eliminarRepresentado = async (representante_id, representado_id) => {
+    try {
+        return new Promise((resolve, reject) => {
+            db.run(
+                `DELETE FROM representante_estudiante WHERE representante_id = ? AND estudiante_id = ?`,
+                [representante_id, representado_id],
+                function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve("Representado eliminado exitosamente");
+                    }
+                }
+            );
+        })
+    } catch (error) {
+        console.error(error.message);
+        throw error
+    }
+}
+
+exports.eliminarRepresentadoByRepresentanteId = async (representante_id) => {
+    try {
+        return new Promise((resolve, reject) => {
+            db.run(
+                `DELETE FROM representante_estudiante WHERE representante_id = ?`,
+                [representante_id],
+                function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve("Representado eliminado exitosamente");
+                    }
+                }
+            );
+        })
+    } catch (error) {
+        console.error(error.message);
+        throw error
+    }
+}
+
+exports.eliminarRepresentante = async (representante_id) => {
+    try {
+        const datos_personales_id = (await this.representanteById(representante_id)).datos_personales_id;
+
+        const datosPersonalesEliminar = new Promise((resolve, reject) => {
+            db.run(
+                `DELETE FROM persona WHERE id = ?`,
+                [datos_personales_id],
+                function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve("Persona eliminada exitosamente");
+                    }
+                }
+            );
+        })
+
+        const representanteEliminar = new Promise((resolve, reject) => {
+            db.run(
+                `DELETE FROM representante WHERE id = ?`,
+                [representante_id],
+                function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve("Representante eliminado exitosamente");
+                    }
+                }
+            );
+        })
+
+        const representadosEliminar = await this.eliminarRepresentadoByRepresentanteId(representante_id)
+        const [representanteResult, datosPersonalesResult] = await Promise.allSettled([representanteEliminar, datosPersonalesEliminar]);
+
+        if (representanteResult.status === "rejected" || representadosEliminar.status === "rejected" || datosPersonalesResult.status === "rejected") {
+            return Error(`Error al eliminar los datos:\n 
+                 ${representanteResult.reason} \n ${representadosEliminar.reason} \n ${datosPersonalesResult.reason}`);
+        }
+        return "Datos eliminados exitosamente";
+
+    } catch (error) {
+        console.error(error.message);
+        throw error
+    }
+}

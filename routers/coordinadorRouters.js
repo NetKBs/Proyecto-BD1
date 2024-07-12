@@ -13,6 +13,9 @@ router.post('/representante/crear', representanteControllers.crearRepresentante)
 router.get('/representante/buscar', representanteControllers.representanteByCedula);
 router.get('/representante/editar/:id', representanteControllers.editarRepresentanteView);
 router.post('/representante/editar/:id', representanteControllers.editarRepresentante);
+router.post('/representante/eliminar/:id', representanteControllers.eliminarRepresentante);
+router.post('/representante/:id/representado/crear', representanteControllers.crearRepresentado);
+router.post('/representante/:representante_id/representado/:representado_id/eliminar', representanteControllers.eliminarRepresentado);
 
 // Rutas para manejar estudiantes
 router.get('/estudiante', estudianteControllers.estudiante);

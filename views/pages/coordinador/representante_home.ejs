@@ -101,28 +101,45 @@
             </div>  
             
         </div>
-        <% } %> 
         
-        <% if (data.representados){%>
+        
+        
         <div class="card-representados">
-            <div class="header-inside">
-                <h2>Representados</h2>
+            
+            <div class="container">
+                <h2>Añadir Representados</h2>
+                <form action="/coordinador/representante/<%= data.representante.id %>/representado/crear" method="POST">
+                    <input type="text" name="representado" placeholder="Ingrese cédula del estudiante">
+                    <input type="submit" value="Agregar">
+                </form>
             </div>
+            <% if (data.representados){%>
             <!-- Acá saldrá los estudiantes que este representante representa -->
             <table>
                 <tr>
                     <th>Nombre Completo</th>
                     <th>Cédula</th>
-                    <th>Año</th>
+                    <th></th>
                 </tr>
+                <% for (representado of data.representados){ %> 
                 <tr>
-                    <td>Pepe José Perez Ramirez</td>
-                    <td>V30987123</td>
-                    <td>3ro</td>
+                    <td>
+                        <%= representado.primer_nombre %> <%= representado.segundo_nombre %> 
+                        <%= representado.primer_apellido %> <%= representado.segundo_apellido %>
+                    </td>
+                    <td><%= representado.cedula %></td>
+                    <td>
+                        <form action="/coordinador/representante/<%= data.representante.id %>/representado/<%= representado.estudiante_id %>/eliminar" method="POST">
+                            <button type="submit">Remover</button>
+                        </form>
+                    </td>
                 </tr>
+                <%}%>
             </table>
+            <%}%>
         </div>
-        <%}%>
+        
+        <% } %> 
     </main>
     
     
