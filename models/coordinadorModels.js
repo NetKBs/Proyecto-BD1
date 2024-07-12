@@ -15,7 +15,6 @@ exports.getCoordinadores = async () => {
         console.error(error.message);
         throw error
     }
-    
 }
 
 exports.getCoordinadorByUserId = async (id) => {

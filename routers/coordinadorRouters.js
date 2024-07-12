@@ -4,6 +4,15 @@ const coordinadorControllers = require('../controllers/coordinadorControllers')
 
 router.get('/', coordinadorControllers.coordinador);
 
+// Rutas para manejar representantes
+router.get('/representante', coordinadorControllers.representante);
+router.get('/representante/crear', coordinadorControllers.crearRepresentanteView);
+router.post('/representante/crear', coordinadorControllers.crearRepresentante);
+router.get('/representante/buscar', coordinadorControllers.representanteByCedula);
+router.get('/representante/editar/:id', coordinadorControllers.editarRepresentanteView);
+router.post('/representante/editar/:id', coordinadorControllers.editarRepresentante);
+
+
 
 // Ruta para coordinador por ID
 //router.get('/:id', coordinadorControllers.coordinador);

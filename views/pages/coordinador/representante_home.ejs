@@ -16,13 +16,13 @@
 <body>
     <header>
         <div id="left-header">
-            <a href="#"><img src="images/logo.png" alt="logo"></a>
+            <a href="#"><img src="/images/logo.png" alt="logo"></a>
             <h1>Coordinador Abiham Ramos</h1>
         </div>
     
         <!-- OPCIONES DEL HEADER ACA -->
         <div id="right-header">
-            <a href="#">Salir</a>
+            <a href="/auth/logout">Salir</a>
         <div>
     </header>
     
@@ -43,51 +43,67 @@
     <main class="content-main">
         <div class="header-main">
             <h2>Representantes</h2>
-            <a href="#" class="nuevo">Nuevo Representante</a>
+            <a href="/coordinador/representante/crear" class="nuevo">Nuevo Representante</a>
         </div>
        
         
         <div class="card-buscar">
             <h3>Buscar Representante</h3>
-            <form action="" method="">
+            <form action="/coordinador/representante/buscar" method="GET">
                 <input type="text" name="representante" id="representante" placeholder="Ingrese cédula del representante">
                 <input type="submit" value="Buscar">
             </form>
         </div>
 
+        <% if (data.representante){%>
         <div class="card-representante">
+            
             <div class="header-inside">
                 <h2>Información del Representante</h2>
-                <a href="#">Editar</a>
+                <a href="/coordinador/representante/editar/<%= data.representante.id %>">Editar</a>
             </div>
             
 
             <div class="content">
+               
                 <div>
-                    <p><span>Estado</span> Activo</p>
-                    <p><span>Nombres y Apellidos:</span> Juan Pérez Gómez</p>
+                    <p>
+                        <span>Estado</span> 
+                        <% if (data.representante.activo == 1){%> 
+                            Activo
+                        <%} else {%>
+                            Inactivo
+                        <%}%>
+                    </p>
+                    <p>
+                        <span>Nombres y Apellidos:</span>  
+                        <%= data.representante.primer_nombre %> <%= data.representante.segundo_nombre %>
+                        <%= data.representante.primer_apellido %> <%= data.representante.segundo_apellido %></p>
+                    </p>
                     <p><span>Edad:</span> 35 años</p>
-                    <p><span>Sexo:</span> Masculino</p>
-                    <p><span>Cargo de Trabajo:</span> Representante</p>
-                    <p><span>Teléfono:</span> +58 412 123 4567</p>
-                    <p><span>Teléfono Alternativo:</span> +58 424 987 6543</p>
-                    <p><span>Estado Civil:</span> Casado</p>
-                    <p><span>Cedula:</span> V30766733</p>
+                    <p><span>Sexo:</span> <%= data.representante.genero %></p>
+                    <p><span>Cargo de Trabajo:</span> <%= data.representante.trabajo %></p>
+                    <p><span>Teléfono:</span> <%= data.representante.telefono %></p>
+                    <p><span>Teléfono Alternativo:</span> <%= data.representante.telefono_alt %></p>
+                    <p><span>Estado Civil:</span> <%= data.representante.estado_civil %></p>
+                    <p><span>Cedula:</span> <%= data.representante.cedula %></p>
                 </div>
 
                 <div>
-                    <p><span>Fecha de Nacimiento:</span> 15 de Julio, 1987</p>
-                    <p><span>Lugar de Nacimiento:</span> Caracas, Venezuela</p>
-                    <p><span>Dirección de Domicilio:</span> Calle 123, Urbanización Residencial, Caracas, Venezuela</p>
-                    <p><span>Lugar de Trabajo:</span> Liceo Bolivariano</p>
-                    <p><span>Correo Electrónico:</span> juan.perez@example.com</p>
-                    <p><span>Correo Alternativo:</span> juanperez@gmail.com</p>
+                    <p><span>Fecha de Nacimiento:</span> <%= data.representante.fecha_nacimiento %></p>
+                    <p><span>Lugar de Nacimiento:</span> <%= data.representante.estado_nacimiento %>, <%= data.representante.pais_nacimiento %></p>
+                    <p><span>Dirección de Domicilio:</span> <%= data.representante.casa_direccion %></p>
+                    <p><span>Lugar de Trabajo:</span> <%= data.representante.lugar_trabajo %></p>
+                    <p><span>Correo Electrónico:</span> <%= data.representante.correo %></p>
+                    <p><span>Correo Alternativo:</span> <%= data.representante.correo_alt %></p>
                 </div>
  
             </div>  
+            
         </div>
-
+        <% } %> 
         
+        <% if (data.representados){%>
         <div class="card-representados">
             <div class="header-inside">
                 <h2>Representados</h2>
@@ -106,7 +122,7 @@
                 </tr>
             </table>
         </div>
-    
+        <%}%>
     </main>
     
     

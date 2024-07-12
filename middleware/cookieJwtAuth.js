@@ -4,7 +4,7 @@ const JwtAuth = (rolRequerido = null) => {
     return (req, res, next) => {
         const token = req.cookies.token
         if (!token) {
-            res.redirect('/usuario/login')
+            res.redirect('/auth/login')
             return;
         } 
     
@@ -15,7 +15,7 @@ const JwtAuth = (rolRequerido = null) => {
             if (rolRequerido != null) {
                 if (user.user.rol !== rolRequerido) {
                     res.status(403).send('Acceso denegado: no tienes el rol necesario.');
-                    //res.redirect('/usuario/login') // Cambiar esto
+                    res.redirect('/auth/login')
                     return;
                 }
             }
@@ -25,7 +25,7 @@ const JwtAuth = (rolRequerido = null) => {
         } catch(error) {
             console.log(error)
             res.clearCookie('token')
-            res.redirect('/usuario/login')
+            res.redirect('/auth/login')
         }
     }
 } 

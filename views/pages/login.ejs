@@ -12,13 +12,13 @@
         <div class="login">
             <img src="/images/logo.png" alt="LOGO">
             <h2>Iniciar Sesión</h2>
-            <form action="Iniciar Sesion">
+            <form action="/auth/login" method="POST">
                 
                 <label for="Usuario">Usuario</label>
-                <input type="text">
+                <input type="text" name="username">
                 
                 <label for="Clave">Contraseña</label>
-                <input type="password">
+                <input type="password" name="password">
 
                 <button type="submit">Entrar</button>
             </form>

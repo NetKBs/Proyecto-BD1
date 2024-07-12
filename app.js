@@ -16,20 +16,17 @@ app.set('views', path.join(__dirname, 'views/pages'))
 app.use(express.static('public'));
 
 
+
+// routers
+const coordinadorRouters = require('./routers/coordinadorRouters')
+const authRouters = require('./routers/authRouters')
+
 app.get('/', (req, res) => {
     res.render('home')
 })
 
-app.get('/login', (req, res) => {
-    res.render('login')
-})
-
-// routers
-/*const coordinadorRouters = require('./routers/coordinadorRouters')
-const usuarioRouters = require('./routers/usuarioRouters')
-
+app.use('/auth', authRouters)
 app.use('/coordinador', auth('Coordinador'), coordinadorRouters)
-app.use('/usuario', usuarioRouters)*/
 
 app.listen(PORT, () => console.log('Server running on port localhost:'+PORT))
 

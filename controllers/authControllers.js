@@ -13,7 +13,6 @@ exports.login = (req, res) => {
 const alreadyLoggedIn = (req, res) => {
     try {
         const user = jwt.verify(req.cookies.token, "SECRET");
-
         switch (user.user.rol) {
             case 'Coordinador':
                 return res.redirect('/coordinador');
@@ -26,19 +25,20 @@ const alreadyLoggedIn = (req, res) => {
             default:
                 return res.redirect('/');
         }
+
     } catch (error) {
         res.clearCookie('token');
-        res.redirect('/usuario/login');
+        res.redirect('/auth/login');
     }
 };
 
 exports.logout = (req, res) => {
     if (!req.cookies.token) {
-        return res.redirect('/usuario/login');
+        return res.redirect('/auth/login');
     }
 
     res.clearCookie('token');
-    res.redirect('/usuario/login'); // Cambiar al home o algo así
+    res.redirect('/');
 };
 
 exports.loginAuth = async (req, res) => {
@@ -46,21 +46,19 @@ exports.loginAuth = async (req, res) => {
 
     try {
         const user = await usuarioModels.getUsuarioByNombre(username);
-
         if (!user || user.clave_acceso !== password) {
             return res.render('login', { data: { error: 'Credenciales incorrectas' } });
         }
 
         const rol = await usuarioModels.getTipoUsuarioById(user.tipo_usuario_id);
-
         if (!rol) {
             return res.status(402).json({ error: 'Rol no encontrado' });
         }
 
         const userData = {
-            id: user.id,
+            id: await getUserDataByRol(rol.nombre, user.id),
             rol: rol.nombre,
-            ...getUserDataByRol(user.rol, user.id)
+            user_id: user.id
         };
 
         loggedIn(userData, res);
@@ -94,18 +92,20 @@ const loggedIn = (user, res) => {
 };
 
 const createToken = (user) => {
-    return jwt.sign({ user }, "SECRET", { expiresIn: '1h' });
+    return jwt.sign({ user }, "SECRET", { expiresIn: '5h' });
 };
 
-const getUserDataByRol = (rol, id) => {
+const getUserDataByRol = async (rol, id) => {
+  
     switch (rol) {
         case 'Coordinador':
-            return { coord_id: coordinadorModels.getCoordinadorByUserId(id).id };
+            return (await coordinadorModels.getCoordinadorByUserId(id)).id 
         case 'Representante':
             //return { repre_id: getRepresentanteByUserId(id).id };
         case 'Docente':
             //return { docen_id: getDocenteByUserId(id).id };
         default:
+            console.log("Estoy en default")
             return {};
     }
 };
