@@ -27,15 +27,19 @@ exports.crearEstudianteView = async (req, res) => {
 }
 
 exports.crearEstudiante = async (req, res) => {
-    body = req.body
-    result = await estudianteModels.crearEstudiante(body)
-    if (result instanceof Error) {
-        console.log("Ocurrió un error al crear el estudiante:", result.message);
+    try {
+        body = req.body
+        result = await estudianteModels.crearEstudiante(body)
+        if (result instanceof Error) {
+            console.log("Ocurrió un error al crear el estudiante:", result.message);
+            res.redirect("/coordinador/estudiante")
+        } else {
+            res.redirect('/coordinador/estudiante')
+        } 
+    } catch (error) {
+        console.log({ error: 'Ocurrió un error al crear el estudiante:', message: error.message });
         res.redirect("/coordinador/estudiante")
-    } else {
-        res.redirect('/coordinador/estudiante')
-    }  
-    
+    }
 }
 
 exports.editarEstudianteView = async (req, res) => {

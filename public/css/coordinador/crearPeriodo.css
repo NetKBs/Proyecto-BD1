@@ -83,7 +83,6 @@
 
     & th, td {
         padding: 10px;
-       
         text-align: center;
     }
 
@@ -111,7 +110,24 @@
     .edit-button:hover {
         background-color: #0056b3;
     }
-  }
+
+    td {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    input[type="text"] {
+        flex: 1;
+        padding: 5px;
+        border-radius: 4px;
+        margin-right: 10px; /* Add margin between input and button */
+    }
+
+    .edit-button {
+        margin-left: 10px; /* Add margin between input and button */
+    }
+}
 
 
 footer {
@@ -119,3 +135,80 @@ footer {
     bottom: 0;
     right: 0;
  }
+
+ 
+ .header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+
+    & a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        background-color: #011140;
+        margin-bottom: 5px;
+        padding: 10px 20px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    & a:hover {
+        background-color: #0056b3;
+    }
+}
+
+.header-inside {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+
+    & h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    & button {
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        background-color: #011140;
+        margin-bottom: 5px;
+        padding: 10px 20px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    & button:hover {
+        background-color: #0056b3;
+    }
+}
+
+.input-seccion {
+    max-width: fit-content;
+}
+
+#guardar-periodo {
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #011140;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+#guardar-periodo:hover {
+    background-color: #0056b3;
+}

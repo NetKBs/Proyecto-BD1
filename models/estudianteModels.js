@@ -52,7 +52,6 @@ exports.crearEstudiante = async re_data => {
             
                 (err, row) => {
                     if (err) {
-                        console.log("Error al insertar estudiante", err)
                         reject(new Error(`Error al insertar estudiante ${err}`));
                     } else {
                         resolve(row);

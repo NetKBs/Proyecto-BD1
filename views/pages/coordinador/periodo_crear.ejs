@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="/css/init.css">
+<link rel="stylesheet" href="/css/sidebar.css">
+<link rel="stylesheet" href="/css/header_footer.css">
+<link rel="stylesheet" href="/css/coordinador/crearPeriodo.css">
+<meta charset="UTF-8">
+</head>
+
+<body>
+    <header>
+        <div id="left-header">
+            <a href="#"><img src="/images/logo.png" alt="logo"></a>
+            <h1>Coordinador Abiham Ramos</h1>
+        </div>
+    
+        <!-- OPCIONES DEL HEADER ACA -->
+        <div id="right-header">
+            <a href="/auth/logout">Salir</a>
+        <div>
+    </header>
+
+<nav id="sidebar">
+    <!-- OPCIONES DE LA SIDEBAR ACA -->
+     <a href="#">Inicio</a>
+     <a href="#" class="actual-link-sidebar">Períodos</a>
+     <a href="#">Asignaturas</a>
+     <a href="#">Cargas Académicas</a>
+     <a href="#">Calificaciones</a>
+     <a href="#">Docentes</a>
+     <a href="#">Estudiantes</a>
+     <a href="#">Representantes</a>
+</nav>
+
+<main class="content-main">
+    <div class="header-main">
+        <a href="/coordinador/representante" class="nuevo">Regresar</a>   
+    </div>
+<div class="card-agregar">
+    <h3>Nombre del período</h3>
+    <input type="text" name="periodo" id="periodo">
+</div>
+
+<div class="card-tabla">
+    <div class="header-inside">
+        <h3>Secciones Creadas</h3>
+        <button id="nuevaSeccion">Nueva Sección</button>
+    </div>
+   
+    <!--Crear una tabla con codigo, nombre y años/grados en los que se da la materia-->
+    <table>
+        <tr>
+            <th></th>
+        </tr>
+    </table>
+
+    <button id="guardar-periodo">Guardar</button>
+  </div>
+</main>
+
+
+<footer>
+    <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const nuevaSeccion = document.querySelector('#nuevaSeccion');
+        if (nuevaSeccion) {
+            nuevaSeccion.addEventListener('click', () => {
+                const tabla = document.querySelector('.card-tabla table');
+                const fila = document.createElement('tr');
+                const nombre = document.createElement('td');
+                const input = document.createElement('input');
+                const boton = document.createElement('button');
+
+
+                boton.innerText = 'Eliminar';
+                boton.classList.add('edit-button');
+                input.classList.add('input-seccion');
+                input.type = 'text';
+
+                nombre.appendChild(input);
+                nombre.appendChild(boton);
+                fila.appendChild(nombre);
+                tabla.appendChild(fila);
+
+                boton.addEventListener('click', () => {
+                    fila.remove();
+                });
+            });
+        } else {
+            console.error("Elemento con la clase 'nuevo' no encontrado");
+        }
+
+
+        document.querySelector('#guardar-periodo').addEventListener('click', async () => {
+                const periodo = document.getElementById('periodo').value;
+                const secciones = Array.from(document.querySelectorAll('.card-tabla table tr td input'));
+               
+                const json = {
+                    nombre: periodo,
+                    secciones: secciones.map(seccion => seccion.value)
+                };
+             
+                try {
+                    const response = await fetch('/coordinador/periodo/crear', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(json)
+                    });
+
+                    if (response.ok) {
+                        console.log('Datos enviados correctamente');
+                    } else {
+                        console.error('Error al enviar los datos');
+                    }
+                } catch (error) {
+                    console.error('Error en la solicitud:', error);
+                }
+            });
+
+    });
+</script>
+
+</body>
+</html>

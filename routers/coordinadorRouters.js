@@ -3,6 +3,7 @@ const router = express.Router()
 const coordinadorControllers = require('../controllers/coordinadorControllers')
 const representanteControllers = require('../controllers/representanteControllers')
 const estudianteControllers = require('../controllers/estudianteControllers')
+const periodoControllers = require('../controllers/periodoControllers')
 
 router.get('/', coordinadorControllers.coordinador);
 
@@ -14,6 +15,7 @@ router.get('/representante/buscar', representanteControllers.representanteByCedu
 router.get('/representante/editar/:id', representanteControllers.editarRepresentanteView);
 router.post('/representante/editar/:id', representanteControllers.editarRepresentante);
 router.post('/representante/eliminar/:id', representanteControllers.eliminarRepresentante);
+// representados
 router.post('/representante/:id/representado/crear', representanteControllers.crearRepresentado);
 router.post('/representante/:representante_id/representado/:representado_id/eliminar', representanteControllers.eliminarRepresentado);
 
@@ -24,6 +26,11 @@ router.post('/estudiante/crear', estudianteControllers.crearEstudiante);
 router.get('/estudiante/buscar', estudianteControllers.estudianteByCedula);
 router.get('/estudiante/editar/:id', estudianteControllers.editarEstudianteView);
 router.post('/estudiante/editar/:id', estudianteControllers.editarEstudiante);
+
+// Rutas para manejar periodos
+router.get('/periodo', periodoControllers.periodo);
+router.get('/periodo/crear', periodoControllers.crearPeriodoView);
+router.post('/periodo/crear', periodoControllers.crearPeriodo);
 
 // Ruta para coordinador por ID
 //router.get('/:id', coordinadorControllers.coordinador);
