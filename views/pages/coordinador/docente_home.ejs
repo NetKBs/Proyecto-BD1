@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="init.css">
-<link rel="stylesheet" href="sidebar.css">
-<link rel="stylesheet" href="header_footer.css">
-<link rel="stylesheet" href="Docente.css">
+    <link rel="stylesheet" href="/css/init.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/header_footer.css">
+    <link rel="stylesheet" href="/css/coordinador/representante.css">
 <meta charset="UTF-8">
 </head>
 
 <body>
-<header>
-    <div id="left-header">
-        <a href="#"><img src="/images/logo.png" alt="logo"></a>
-        <h1>Santa Marta</h1>
-    </div>
-
-    <!-- OPCIONES DEL HEADER ACA -->
-    <div id="right-header">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-    <div>
-</header>
+    <header>
+        <div id="left-header">
+            <a href="#"><img src="/images/logo.png" alt="logo"></a>
+            <h1>Coordinador Abiham Ramos</h1>
+        </div>
+    
+        <!-- OPCIONES DEL HEADER ACA -->
+        <div id="right-header">
+            <a href="/auth/logout">Salir</a>
+        <div>
+    </header>
 
 <nav id="sidebar">
     <!-- OPCIONES DE LA SIDEBAR ACA -->
@@ -36,49 +34,67 @@
 </nav>
 
 <main class="content-main">
+    <div class="header-main">
+        <h2>Docentes</h2>
+        <a href="/coordinador/docente/crear" class="nuevo">Registrar Docente</a>
+    </div>
 
-<h2>Docentes</h2>
-<button class="ButtonRegistrar">Registrar Docente</button>
+    <div class="card-buscar">
+        <h3>Buscar Docente</h3>
+        <form action="/coordinador/docente/buscar" method="GET">
+            <input type="text" name="docente" placeholder="Ingrese cédula del docente">
+            <input type="submit" value="Buscar">
+        </form>
+    </div>
 
-<form action="BuscarCarga">
 
-<label for="CedulaProfesor">Cédula del Docente</label>
-<input type="text">
-</form>
-
-<label for="Estado">Estado</label>
-<select name="Estado" id="">
-    <option value="">...</option>
-    <option value="">Activo</option>
-    <option value="">Inactivo</option>
-    // ...
-  </select>
-</form>
-
-<div class="card-tabla">
-    <h3>Listado de Docentes</h3>
-    <!--Crear una tabla con codigo, nombre y años/grados en los que se da la materia-->
-    <table>
-        <tr>
-            <th>Nombre</th>
-            <th>Cédula</th>
-            <th>Teléfono</th>
-            <th>Fecha Ingreso</th>
-            <th>Estado</th>
-        </tr>
-        <tr>
-            <td>Abiham Ramos</td>
-            <td>30657453</td>
-            <td>04123456789</td>
-            <td>28/04/2008</td>
-            <td>Activo</td>
-            <td><button class="edit-button">Editar</button></td>
-        </tr>
-
-    </table>
+    <% if (data.docente){%>
+        <div class="card-representante">
             
-</div>
+            <div class="header-inside">
+                <h2>Información del Docente</h2>
+                <a href="/coordinador/docente/editar/<%= data.docente.id %>">Editar</a>
+            </div>
+            
 
+            <div class="content">
+               
+                <div>
+                    <p>
+                        <span>Estado</span> 
+                        <% if (data.docente.activo == 1){%> 
+                            Activo
+                        <%} else {%>
+                            Inactivo
+                        <%}%>
+                    </p>
+                    <p>
+                        <span>Nombres y Apellidos:</span>  
+                        <%= data.docente.primer_nombre %> <%= data.docente.segundo_nombre %>
+                        <%= data.docente.primer_apellido %> <%= data.docente.segundo_apellido %></p>
+                    </p>
+                    <p><span>Edad:</span>  <%= data.docente.edad %></p>
+                    <p><span>Sexo:</span> <%= data.docente.genero %></p>
+                    <p><span>Especialidad:</span> <%= data.docente.especialidad %></p>
+                    <p><span>Teléfono:</span> <%= data.docente.telefono %></p>
+                    <p><span>Teléfono Alternativo:</span> <%= data.docente.telefono_alt %></p>
+                    <p><span>Estado Civil:</span> <%= data.docente.estado_civil %></p>
+                    <p><span>Cedula:</span> <%= data.docente.cedula %></p>
+                </div>
+
+                <div>
+                    <p><span>Fecha de Nacimiento:</span> <%= data.docente.fecha_nacimiento %></p>
+                    <p><span>Lugar de Nacimiento:</span> <%= data.docente.ciudad_nacimiento %>, <%= data.docente.estado_nacimiento %>, <%= data.docente.pais_nacimiento %></p>
+                    <p><span>Dirección de Domicilio:</span> <%= data.docente.casa_direccion %></p>
+                    <p><span>Titulo Academico:</span> <%= data.docente.titulo_academico %></p>
+                    <p><span>Correo Electrónico:</span> <%= data.docente.correo %></p>
+                    <p><span>Correo Alternativo:</span> <%= data.docente.correo_alt %></p>
+                </div>
+ 
+            </div>  
+            
+        </div>
+        <% } %> 
 </main>
 
 <footer>

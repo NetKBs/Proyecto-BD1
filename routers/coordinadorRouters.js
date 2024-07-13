@@ -4,6 +4,10 @@ const coordinadorControllers = require('../controllers/coordinadorControllers')
 const representanteControllers = require('../controllers/representanteControllers')
 const estudianteControllers = require('../controllers/estudianteControllers')
 const periodoControllers = require('../controllers/periodoControllers')
+const docenteControllers = require('../controllers/docenteControllers')
+const asignaturaControllers = require('../controllers/asignaturaControllers')
+const inscripcionControllers = require('../controllers/inscripcionControllers')
+const cargaAcademicaControllers = require('../controllers/cargaAcademicaControllers')
 
 router.get('/', coordinadorControllers.coordinador);
 
@@ -31,22 +35,33 @@ router.post('/estudiante/editar/:id', estudianteControllers.editarEstudiante);
 router.get('/periodo', periodoControllers.periodo);
 router.get('/periodo/crear', periodoControllers.crearPeriodoView);
 router.post('/periodo/crear', periodoControllers.crearPeriodo);
+router.get('/periodo/editar/:id', periodoControllers.editarPeriodoView);
+router.post('/periodo/editar/:id', periodoControllers.editarPeriodo);
 
-// Ruta para coordinador por ID
-//router.get('/:id', coordinadorControllers.coordinador);
+// Rutas para manejar docentes
+router.get('/docente', docenteControllers.docente);
+router.get('/docente/crear', docenteControllers.crearDocenteView);
+router.post('/docente/crear', docenteControllers.crearDocente);
+router.get('/docente/buscar', docenteControllers.docenteByCedula);
+router.get('/docente/editar/:id', docenteControllers.editarDocenteView);
+router.post('/docente/editar/:id', docenteControllers.editarDocente);
 
-// Ruta para listar docentes de la institución
-/*router.get('/docentes', coordinadorControllers.docentes);
+// Rutas para manejar asignaturas
+router.get('/asignatura', asignaturaControllers.asignatura);
+router.post('/asignatura/crear', asignaturaControllers.crearAsignatura);
+router.get('/asignatura/editar/:id', asignaturaControllers.editarAsignaturaView);
+router.post('/asignatura/editar/:id', asignaturaControllers.editarAsignatura);
 
-// Rutas para crear y editar docentes
-router.get('/docente/crear', coordinadorControllers.crearDocente);
-router.post('/docente/crear', coordinadorControllers.crearDocente);
-router.get('/docente/editar/:id', coordinadorControllers.editarDocente);
-router.put('/docente/editar/:id', coordinadorControllers.editarDocente);
+// Rutas para manejar Inscripcion
+router.get('/inscripcion', inscripcionControllers.inscripcion);
+router.post('/inscripcion', inscripcionControllers.inscripcionCrear);
 
-// Rutas para eliminar docentes
-router.get('/docente/eliminar/:id', coordinadorControllers.eliminarDocente);
-router.delete('/docente/eliminar/:id', coordinadorControllers.eliminarDocente);*/
-
+// Rutas para manejar carga academica
+router.get('/carga-academica', cargaAcademicaControllers.cargaAcademica);
+router.get('/carga-academica/crear', cargaAcademicaControllers.crearCargaAcademicaView);
+router.post('/carga-academica/crear', cargaAcademicaControllers.crearCargaAcademica);
+router.get('/carga-academica/buscar', cargaAcademicaControllers.buscarCargaAcademica);
+router.get('/carga-academica/editar/:id', cargaAcademicaControllers.editarCargaAcademicaView);
+router.post('/carga-academica/editar/:id', cargaAcademicaControllers.editarCargaAcademica);
 
 module.exports = router

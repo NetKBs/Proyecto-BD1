@@ -35,29 +35,24 @@
 </nav>
 
 <main class="content-main">
-
-<h2>Crear Carga Académica</h2>
 <div class="header-main">
   <a href="/coordinador/carga-academica" class="nuevo">Regresar</a>   
 </div>
 
 <div class="card-representante">
   <div class="header-inside">
-      <h2>Crear Carga Académica</h2>
+      <h2>Editar Carga Académica</h2>
   </div>
 
-  <form action="/coordinador/carga-academica/crear" method="POST">
+  <form action="/coordinador/carga-academica/editar/<%= data.carga_id %>" method="POST">
     <div class="content">
       <div>
-        <label for="profesorr">Cédula del Docente</label>
-        <input type="text" id="profesor" name="profesor">
-
         <label for="materia">Materia</label>
         <select name="materia" id="">
             <%data.asignaturas.forEach(asignatura => { %>
             <option value="<%= asignatura.id %>"><%= asignatura.nombre %></option>
             <% }) %>          
-        </select>
+          </select>
       </div>
       <div>
         
@@ -72,7 +67,8 @@
           <% }) %> 
           </select>
     </div>
-    <input type="submit" value="Crear Carga">
+    <input type="hidden" name="carga_id" value="<%= data.carga_id %>">
+    <input type="submit" value="Guardar">
   </form>
 
 </div>
@@ -85,17 +81,22 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-   const asignaturas = JSON.parse('<%- JSON.stringify(data.asignaturas) %>');
-   const selectMateria = document.querySelector('select[name="materia"]');
-   const selectGrados = document.querySelector('select[name="grado"]');
-   
-   const materiaSeleccionada = selectMateria.options[selectMateria.selectedIndex].value;
-   const gradosDisponibles = asignaturas.filter(asignatura => asignatura.id == materiaSeleccionada)[0].grados;
-   selectGrados.innerHTML = `${gradosDisponibles.map(grado => `<option value="${grado}">Grado ${grado}</option>`).join('')}`;
+    const data = JSON.parse('<%- JSON.stringify(data) %>');
+    const selectMateria = document.querySelector('select[name="materia"]');
+    const selectGrados = document.querySelector('select[name="grado"]');
+
+    const materiaSeleccionada = data.cargaData.materia_id;
+    selectMateria.value = materiaSeleccionada;
+
+    const gradosDisponibles = data.asignaturas.find(asignatura => asignatura.id == materiaSeleccionada).grados;
+    selectGrados.innerHTML = `${gradosDisponibles.map(grado => `<option value="${grado}" ${data.cargaData.anio == grado ? 'selected' : ''}>Grado ${grado}</option>`).join('')}`;
+
+    const seccionSeleccionada = data.cargaData.seccion;
+    document.querySelector('select[name="seccion"]').value = seccionSeleccionada;
 
 
-  selectMateria.addEventListener('change', function(){
-      const gradosDisponibles = asignaturas.filter(asignatura => asignatura.id == selectMateria.value)[0].grados;
+    selectMateria.addEventListener('change', function(){
+      const gradosDisponibles = data.asignaturas.filter(asignatura => asignatura.id == selectMateria.value)[0].grados;
       selectGrados.innerHTML = `${gradosDisponibles.map(grado => `<option value="${grado}">Grado ${grado}</option>`).join('')}`;
     })
 })

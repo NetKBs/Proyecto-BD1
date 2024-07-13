@@ -19,6 +19,7 @@ app.use(express.static('public'));
 
 // routers
 const coordinadorRouters = require('./routers/coordinadorRouters')
+const docenteRouters = require('./routers/docenteRouters')
 const authRouters = require('./routers/authRouters')
 
 app.get('/', (req, res) => {
@@ -27,6 +28,7 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authRouters)
 app.use('/coordinador', auth('Coordinador'), coordinadorRouters)
+app.use('/docente', auth('Docente'), docenteRouters)
 
 app.listen(PORT, () => console.log('Server running on port localhost:'+PORT))
 

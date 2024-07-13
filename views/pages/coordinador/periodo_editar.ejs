@@ -35,28 +35,57 @@
 
 <main class="content-main">
     <div class="header-main">
-        <h2>Crear Periodo</h2>
+        <h2>Modificar Periodo</h2>
         <a href="/coordinador/periodo" class="nuevo">Regresar</a>   
     </div>
-<div class="card-agregar">
-    <h3>Nombre del período</h3>
-    <input type="text" name="periodo" id="periodo">
+<div class="card-agregar content">
+
+    <div>
+        <label for="periodo">Nombre Periodo</label>
+        <input type="text" name="periodo" id="periodo" value="<%=data.periodo.nombre%>">
+    </div>
+    
+    <div>
+        <label for="estado">Estado</label> 
+        <select name="estado" id="estado">
+            <option value="0" <% if (data.periodo.finalizado == 0) { %>selected<% } %>>Activo</option>
+            <option value="1" <% if (data.periodo.finalizado == 1) { %>selected<% } %>>Finalizado</option>
+        </select>
+
+        <label for="lapso">Lapso Activo</label>
+        <select name="lapso" id="lapso">
+            <option value="0" <%= data.periodo.lapso_activo === 0 ? 'selected' : '' %>>Ninguno</option>
+            <option value="1" <%= data.periodo.lapso_activo === 1 ? 'selected' : '' %>>Lapso 1</option>
+            <option value="2" <%= data.periodo.lapso_activo === 2 ? 'selected' : '' %>>Lapso 2</option>
+            <option value="3" <%= data.periodo.lapso_activo === 3 ? 'selected' : '' %>>Lapso 3</option>
+        </select>
+
+    </div>
 </div>
 
 <div class="card-tabla">
     <div class="header-inside">
         <h3>Secciones Creadas</h3>
         <button id="nuevaSeccion">Nueva Sección</button>
+       
     </div>
    
     <!--Crear una tabla con codigo, nombre y años/grados en los que se da la materia-->
     <table>
         <tr>
             <th></th>
+           
         </tr>
+        <%data.periodo.secciones.forEach(seccion => { %>
+            <tr>
+                <td>
+                    <input type="text" value="<%=seccion%>" disabled>
+                </td>
+            </tr>
+        <% }) %>
     </table>
 
-    <button id="guardar-periodo">Crear</button>
+    <button id="guardar-periodo">Guardar</button>
   </div>
 </main>
 
@@ -99,14 +128,19 @@
         document.querySelector('#guardar-periodo').addEventListener('click', async () => {
                 const periodo = document.getElementById('periodo').value;
                 const secciones = Array.from(document.querySelectorAll('.card-tabla table tr td input'));
+                const estado = document.getElementById('estado').value;
+                const lapso = document.getElementById('lapso').value;
                
                 const json = {
+                    id: '<%=data.periodo.id%>',
                     nombre: periodo,
+                    estado: estado,
+                    lapso: lapso,
                     secciones: secciones.map(seccion => seccion.value)
                 };
              
                 try {
-                    const response = await fetch('/coordinador/periodo/crear', {
+                    const response = await fetch("/coordinador/periodo/editar/<%=data.periodo.id%>", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

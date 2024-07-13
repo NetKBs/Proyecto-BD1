@@ -47,66 +47,40 @@
     
     <!-- ACÁ IRÁ EL CONTENIDO QUE SE MOSTRARÁ EN EL MEDIO DE LA PAGINA -->
     <main class="content-main">
-        <h2>Gestión de Asignaturas</h2>
+        <div class="header-main">
+            <a href="/coordinador/asignatura" class="nuevo">Regresar</a>   
+        </div>
         <div class="card-agregar">
-            <h3>Agregar Nueva Asignatura</h3>
-            <form action="/coordinador/asignatura/crear" method="POST">
+            <h3>Actualizar Asignatura</h3>
+            <form action="/coordinador/asignatura/editar/<%= data.asignatura.id %>" method="POST">
                 <label for="asignatura">Nombre de la asignatura</label>
-                <input type="text" name="asignatura" id="asignatura">
+                <input type="text" name="asignatura" id="asignatura" value="<%= data.asignatura.nombre %>">
                 <label for="codigo">Codigo</label>
-                <input type="text" name="codigo">
+                <input type="text" name="codigo" value="<%= data.asignatura.codigo %>">
                 
                 <fieldset>
                     <legend>Años en los que se imparte</legend>
                     <label>
-                        <input type="checkbox" name="grados" value="1"> Grado 1
+                        <input type="checkbox" name="grados" value="1" <% if(data.asignatura.grados.includes(1)) { %> checked <% } %>> Grado 1
                     </label>
                     <label>
-                        <input type="checkbox" name="grados" value="2"> Grado 2
+                        <input type="checkbox" name="grados" value="2" <% if(data.asignatura.grados.includes(2)) { %> checked <% } %>> Grado 2
                     </label>
                     <label>
-                        <input type="checkbox" name="grados" value="3"> Grado 3
+                        <input type="checkbox" name="grados" value="3" <% if(data.asignatura.grados.includes(3)) { %> checked <% } %>> Grado 3
                     </label>
                     <label>
-                        <input type="checkbox" name="grados" value="4"> Grado 4
+                        <input type="checkbox" name="grados" value="4" <% if(data.asignatura.grados.includes(4)) { %> checked <% } %>> Grado 4
                     </label>
                     <label>
-                        <input type="checkbox" name="grados" value="5"> Grado 5
+                        <input type="checkbox" name="grados" value="5" <% if(data.asignatura.grados.includes(5)) { %> checked <% } %>> Grado 5
                     </label>
                 </fieldset>
 
-                <input type="submit" value="Agregar">
+                <input type="submit" value="Guardar">
             </form>
         </div>
 
-        <div class="card-tabla">
-            <h3>Asignaturas Creadas</h3>
-            <!--Crear una tabla con codigo, nombre y años/grados en los que se da la materia-->
-            <table>
-                <tr>
-                    <th>Código</th>
-                    <th>Nombre</th>
-                    <th>Grados</th>
-                    <th></th>
-                </tr>
-                <%if (data.asignatura){%>
-                    <%data.asignatura.forEach(asignatura => {%>
-                        <tr>
-                            <td><%=asignatura.codigo%></td>
-                            <td><%=asignatura.nombre%></td>
-                            <td>
-                                <%asignatura.grados.forEach(grado => {%>
-                                    <%=grado%>, 
-                                <%})%>
-                            </td>
-                            <td><a href="/coordinador/asignatura/editar/<%= asignatura.id %>">Editar</a></td>
-                        </tr>
-                    <%})%>
-                <%}%>
-               
-            </table>
-            
-        </div>
     </main>
     
     

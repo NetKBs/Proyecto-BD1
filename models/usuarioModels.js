@@ -52,3 +52,21 @@ exports.getTipoUsuarioById = async (id) => {
         throw error
     }
 }
+
+
+exports.actualizarClave = async (id, nueva_clave) => {
+    try {
+        return new Promise((resolve, reject) => {
+            db.run(`UPDATE usuario SET clave_acceso = ? WHERE id = ?`, [nueva_clave, id], function (err) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(this.changes);
+                }
+            });
+        });
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}

@@ -16,7 +16,7 @@
 <body>
     <header>
         <div id="left-header">
-            <a href="#"><img src="images/logo.png" alt="logo"></a>
+            <a href="#"><img src="/images/logo.png" alt="logo"></a>
             <h1>Coordinador Abiham Ramos</h1>
         </div>
     
@@ -45,12 +45,12 @@
 
         <form action="" method="POST">
 
-            <p>Periodo Escolar: 2022-2023</p>
+            <p>Periodo Escolar: <%=data.periodo.nombre%></p>
 
             <label for="estudiante">Cedula del estudiante</label>
             <input type="text" name="estudiante" id="estudiante" placeholder="Solo números">
             <label for="grado">Seleccionar grado de inscripción</label>
-            <select id="grado">
+            <select id="grado" name="grado">
                 <option value="1">1er Año</option>
                 <option value="2">2do Año</option>
                 <option value="3">3cer Año</option>
@@ -58,14 +58,13 @@
                 <option value="5">5to Año</option>
             </select>
             <label for="seccion">Seleccionar seccion</label>
-            <select id="seccion">
-                <option value="A">Seccion A</option>
-                <option value="B">Seccion B</option>
-                <option value="C">Seccion C</option>
-                <option value="D">Seccion D</option>
-                <option value="E">Seccion E</option>
+            <select id="seccion" name="seccion">
+                <%data.periodo.secciones.forEach(seccion => { %>
+                    <option value="<%=seccion%>">Seccion <%=seccion%></option>
+                <%})%>
             </select>
 
+            <input type="hidden" name="periodo_id" value="<%=data.periodo.id%>">
             <input type="submit" value="Inscribir">
         </form>
     </main>

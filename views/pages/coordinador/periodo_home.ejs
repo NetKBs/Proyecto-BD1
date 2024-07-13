@@ -52,12 +52,41 @@
         <table>
             <tr>
                 <th>ID</th>
-                <th>Período</th>
+                <th>Periodo</th>
                 <th>Fecha Inicio</th>
                 <th>Fecha Final</th>
+                <th>Secciones</th>
+                <th>Lapso Activo</th>
                 <th>Estado</th>
-                <th>Modificar</th>
+                <th></th>
             </tr>
+            <% if (data.periodos) { %>
+                <% data.periodos.forEach(periodo => { %>
+                    <tr>
+                        <td><%= periodo.id %></td>
+                        <td><%= periodo.nombre %></td>
+                        <td><%= periodo.fecha_inicio %></td>
+                        <td><%= periodo.fecha_fin %></td>
+                        <td>
+                            <% periodo.secciones.forEach(seccion => { %>
+                                <%= seccion %>, 
+                            <% }) %>
+                        </td>
+
+                        <td><% if (periodo.lapso_activo == 0) {%> <%="Ninguno"%> <%} else { %> <%=periodo.lapso_activo%> <%}%></td>
+                        <td>
+                            <%if (periodo.finalizado == 0) { %> <%= 'Activo' %> <% } else { %> <%= 'Finalizado' %> <% } %>
+                        </td>
+
+
+
+
+                        <td><a href="/coordinador/periodo/editar/<%= periodo.id %>" class="nuevo">Editar</a></td>
+                    </tr>
+                <% }) %>
+            <% } %> 
+        </table>
+    </div>
 
 </main>
 

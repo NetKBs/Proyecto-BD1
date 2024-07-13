@@ -2,6 +2,7 @@ const { render } = require("ejs")
 const jwt = require("jsonwebtoken")
 const usuarioModels = require("../models/usuarioModels")
 const coordinadorModels = require('../models/coordinadorModels')
+const docenteModels = require('../models/docenteModels')
 
 exports.login = (req, res) => {
     if (req.cookies.token) {
@@ -18,10 +19,8 @@ const alreadyLoggedIn = (req, res) => {
                 return res.redirect('/coordinador');
             case 'Representante':
                 //return res.redirect('/representante');
-                break;
             case 'Docente':
-                //return res.redirect('/docente');
-                break;
+                return res.redirect('/docente');
             default:
                 return res.redirect('/');
         }
@@ -84,7 +83,7 @@ const loggedIn = (user, res) => {
             //return res.redirect('/representante'); 
             break;
         case 'Docente':
-            //return res.redirect('/docente'); 
+            return res.redirect('/docente'); 
             break;
         default:
             return res.redirect('/');
@@ -103,7 +102,7 @@ const getUserDataByRol = async (rol, id) => {
         case 'Representante':
             //return { repre_id: getRepresentanteByUserId(id).id };
         case 'Docente':
-            //return { docen_id: getDocenteByUserId(id).id };
+            return (await docenteModels.getDocenteByUserId(id)).id
         default:
             console.log("Estoy en default")
             return {};

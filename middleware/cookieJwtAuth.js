@@ -16,6 +16,7 @@ const JwtAuth = (rolRequerido = null) => {
                 if (user.user.rol !== rolRequerido) {
                     res.status(403).send('Acceso denegado: no tienes el rol necesario.');
                     res.redirect('/auth/login')
+                    next()
                     return;
                 }
             }

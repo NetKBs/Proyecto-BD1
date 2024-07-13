@@ -121,3 +121,19 @@ h2 {
         background-color: #0056b3;
     }
 }
+
+a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #011140;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #0056b3;
+}

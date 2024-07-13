@@ -212,3 +212,28 @@ footer {
 #guardar-periodo:hover {
     background-color: #0056b3;
 }
+
+.content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+   & div {
+    padding: 10px;
+    width: 50%;
+   }
+}
+
+select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    /* Estilo para las opciones del select */
+    & option {
+        font-size: 15px;
+    }
+
+}

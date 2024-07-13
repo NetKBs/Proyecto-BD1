@@ -20,7 +20,7 @@
 <body>
     <header>
         <div id="left-header">
-            <a href="#"><img src="images/logo.png" alt="logo"></a>
+            <a href="#"><img src="/images/logo.png" alt="logo"></a>
             <h1>Docente Ines Sanchez</h1>
         </div>
     
@@ -43,61 +43,60 @@
 
     <main class="content-notes">
         <h2>Carga de Notas Académicas</h2>
-        <form>
+        <form action="/docente/listado" method="get">
             <label for="materia">Materia:</label>
             <select id="materia" name="materia">
-              <option value="">Seleccione una materia</option>
-              <option value="matematicas">Matemáticas</option>
-              <option value="lengua">Lengua</option>
-              <option value="ciencias">Ciencias</option>
-              <!-- Add more options here -->
+              <%data.asignaturas.forEach(asignatura => { %>
+                <option value="<%= asignatura.id %>"><%= asignatura.nombre %></option>
+              <% }) %>        
             </select>
         
             <label for="seccion">Sección:</label>
             <select id="seccion" name="seccion">
-              <option value="">Seleccione una sección</option>
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <!-- Add more options here -->
+              <% data.periodo.secciones.forEach(seccion => { %>
+                <option value="<%= seccion %>">Seccion <%= seccion %></option>
+              <% }) %> 
             </select>
         
-            <label for="anio">Año:</label>
-            <select id="anio" name="anio">
-              <option value="">Seleccione un año</option>
-              <option value="2024">2024</option>
-              <option value="2023">2023</option>
-              <option value="2022">2022</option>
-              <!-- Add more options here -->
+            <label for="grado">Año:</label>
+            <select name="grado" id="grados-disponibles">
             </select>
-        
-            <label for="alumno">Nombre del Alumno:</label>
-            <input type="text" id="alumno" name="alumno">
-        
-            <button type="button" id="buscar-alumno">Buscar Alumno</button>
-        
-            <h3>Notas</h3>
-            <table>
-              <tr>
-                <th>Lapso 1</th>
-                <td><input type="number" id="lapso1" name="lapso1" min="0" max="100"></td>
-              </tr>
-              <tr>
-                <th>Lapso 2</th>
-                <td><input type="number" id="lapso2" name="lapso2" min="0" max="100"></td>
-              </tr>
-              <tr>
-                <th>Lapso 3</th>
-                <td><input type="number" id="lapso3" name="lapso3" min="0" max="100"></td>
-              </tr>
-              <tr>
-                <th>Nota Final</th>
-                <td><input type="number" id="nota-final" name="nota-final" min="0" max="100"></td>
-              </tr>
-            </table>
-        
-            <button type="submit" id="guardar-notas">Guardar Notas</button>
+            
+            <button type="submit" id="buscar">Buscar Listado</button>
           </form>
+
+          <div class="card-listado">
+            <form action="">
+              <table>
+                <tr>
+                  <th>Estudiante</th>
+                  <th>Cedula</th>
+                  <th>Lapso 1</th>
+                  <th>Lapso 2</th>
+                  <th>Lapso 3</th>
+                  <th>Nota Final</th>
+                </tr>
+                <tr>
+                  <td>Abiham Ramos</td>
+                  <td>123456789</td>
+                  <td><input type="text" value="10"></td>
+                  <td><input type="text" value="10"></td>
+                  <td><input type="text" value="10"></td>
+                  <td><input type="text"></td>
+                </tr>
+                <tr>
+                  <td>Estudiante 2</td>
+                  <td>123456789</td>
+                  <td><input type="text" value="10"></td>
+                  <td><input type="text" value="10"></td>
+                  <td><input type="text" value="10"></td>
+                  <td><input type="text"></td>
+                </tr>
+                <!-- Add more rows here -->
+              </table>
+            </form>
+           
+          </div>
       </main>
   
   <!--... -->
@@ -105,6 +104,24 @@
     <footer>
         <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
     </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+         const data = JSON.parse('<%- JSON.stringify(data) %>');
+         const selectMateria = document.querySelector('select[name="materia"]');
+         const selectGrados = document.querySelector('select[name="grado"]');
+         
+         const materiaSeleccionada = selectMateria.options[selectMateria.selectedIndex].value;
+         const gradosDisponibles = data.asignaturas.filter(asignatura => asignatura.id == materiaSeleccionada)[0].grados;
+         selectGrados.innerHTML = `${gradosDisponibles.map(grado => `<option value="${grado}">Grado ${grado}</option>`).join('')}`;
+      
+      
+        selectMateria.addEventListener('change', function(){
+            const gradosDisponibles = data.asignaturas.filter(asignatura => asignatura.id == selectMateria.value)[0].grados;
+            selectGrados.innerHTML = `${gradosDisponibles.map(grado => `<option value="${grado}">Grado ${grado}</option>`).join('')}`;
+          })
+      })
+      </script>
     
 </body>
 </html>

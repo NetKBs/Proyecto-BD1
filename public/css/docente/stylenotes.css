@@ -183,9 +183,47 @@ footer {
 }
 
 
-
-
-
-
-
  }
+
+
+ .card-listado {
+    background-color: #fff;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    margin: auto;
+    margin-top: 10px;
+
+    & form {
+        width: 100%;
+    }
+
+    & h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    & table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+
+        & th, td {
+            padding: 10px;
+            text-align: center;
+            width: calc(100% / 6); /* Para igualar el ancho de cada celda a 1/6 del ancho total */
+        }
+
+        & th {
+            background-color: #e0e0e0;
+            font-weight: bold;
+        }
+
+        /* Estilo para las filas impares */
+        & tr:nth-child(odd) {
+            background-color: #f5f5f5;
+        }
+    }
+}
