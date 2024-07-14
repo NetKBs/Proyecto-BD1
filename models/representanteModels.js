@@ -144,9 +144,45 @@ exports.editarRepresentante = async (id_representante, body) => {
     }
 }
 
+exports.asignarUsuarioId = async (id_representante, id_usuario) => {
+    try {
+        return new Promise ((resolve, reject) => {
+            db.run(
+                `UPDATE representante SET
+                    usuario_id = ?
+                WHERE id = ?`,
+                [id_usuario, id_representante],
+                function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve("Representante actualizado");
+                    }
+                }
+            );
+        })
+    } catch (error) {
+        console.error(error.message);
+        throw error
+}
+}
 
-
-
+exports.getRepresentanteByUserId = async (id) => {
+    try {
+        return new Promise((resolve, reject) => {
+            db.get(`SELECT * FROM representante WHERE usuario_id = ${id}`, (err, row) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(row);
+                }
+            })
+        })
+    } catch (error) {
+        console.error(error.message);
+        throw error
+    }
+}
 
 exports.representanteByCedula = async (cedula) => {
     try {

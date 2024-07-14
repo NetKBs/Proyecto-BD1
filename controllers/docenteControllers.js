@@ -5,6 +5,7 @@ const periodoModels = require('../models/periodoModels')
 const asignaturaModels = require('../models/asignaturaModels')
 const inscripcionModels = require('../models/inscripcionModels')
 const calificacionModels = require('../models/calificacionesModels')
+const estudianteModels = require('../models/estudianteModels')
 
 exports.docentePanel = async (req, res) => {
     res.render('docente/home', {data:{}})
@@ -43,25 +44,49 @@ exports.cargaNotasView = async (req, res) => {
 }
 
 exports.listado = async (req, res) => {
-    body = req.query
+    const body = req.query
+    const user = req.user.user
+    const cargas = await cargaAcademicaModels.cargasByDocenteID(user.id)
     const periodoActivo = await periodoModels.buscarPeriodoActivo();
     const periodoDatos = await periodoModels.getPeriodoById(periodoActivo.id);
+    const asignaturas = await asignaturaModels.getAsignaturas();
+
     const newBody = {
         periodo_id: periodoActivo.id,
         anio: parseInt(body.grado),
         seccion: body.seccion
     }
     const resultEstudiantes = await inscripcionModels.getEstudiantesInscritosFiltrados(newBody)
+
     if (resultEstudiantes != []) {
         resultEstudiantes.materia = parseInt(body.materia)
-        console.log(resultEstudiantes)
         const calificacionesEstudiantes = await calificacionModels.getCalificacionesEstudiantes(resultEstudiantes)
-        console.log(calificacionesEstudiantes)
-        
+
+        if (calificacionesEstudiantes != []) {
+
+            const calificaciones = []
+            for (let i = 0; i < resultEstudiantes.length; i++) {
+                const estudianteData = await estudianteModels.estudianteById(resultEstudiantes[i].estudiante_id)
+                const nombre = estudianteData.primer_nombre + " " + estudianteData.primer_apellido
+                const cedula = estudianteData.cedula
+
+                calificaciones.push({estudiante_id: resultEstudiantes[i].estudiante_id, cedula: cedula, 
+                    nombre: nombre, calificaciones: calificacionesEstudiantes[i], materia_id: body.materia, 
+                    anio: body.grado, seccion: body.seccion})
+            }
+
+            res.render('docente/notes', {data:{cargas: cargas, asignaturas: asignaturas, periodo: periodoDatos, calificaciones: calificaciones}})
+        }
     }
     
 }
 
+exports.cargaNotasGuardar = async (req, res) => {
+    body = req.body
+    console.log("Entre")
+    const result = await calificacionModels.cargarNotas(body)
+    console.log("Ya terminé señor")
+}
 
 
 

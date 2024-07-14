@@ -70,3 +70,22 @@ exports.actualizarClave = async (id, nueva_clave) => {
         throw error
     }
 }
+
+exports.crearUsuario = async (body) => {
+    try {
+        return new Promise((resolve, reject) => {
+            db.run(`INSERT INTO usuario (nombre_usuario, clave_acceso, activo, tipo_usuario_id) VALUES (?, ?, ?, ?)`, 
+                [body.username, body.password, 1, 2], 
+                function (err) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(this.lastID);
+                }
+            });
+        });
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}

@@ -43,7 +43,7 @@
 
     <main class="content-notes">
         <h2>Carga de Notas Académicas</h2>
-        <form action="/docente/listado" method="get">
+        <form action="/docente/carga-notas/listado" method="GET">
             <label for="materia">Materia:</label>
             <select id="materia" name="materia">
               <%data.asignaturas.forEach(asignatura => { %>
@@ -65,8 +65,10 @@
             <button type="submit" id="buscar">Buscar Listado</button>
           </form>
 
+
+          <% if (data.calificaciones) {%>
           <div class="card-listado">
-            <form action="">
+            <form id="form-calificaciones">
               <table>
                 <tr>
                   <th>Estudiante</th>
@@ -76,27 +78,34 @@
                   <th>Lapso 3</th>
                   <th>Nota Final</th>
                 </tr>
-                <tr>
-                  <td>Abiham Ramos</td>
-                  <td>123456789</td>
-                  <td><input type="text" value="10"></td>
-                  <td><input type="text" value="10"></td>
-                  <td><input type="text" value="10"></td>
-                  <td><input type="text"></td>
-                </tr>
-                <tr>
-                  <td>Estudiante 2</td>
-                  <td>123456789</td>
-                  <td><input type="text" value="10"></td>
-                  <td><input type="text" value="10"></td>
-                  <td><input type="text" value="10"></td>
-                  <td><input type="text"></td>
-                </tr>
-                <!-- Add more rows here -->
+
+                <%data.calificaciones.forEach(estudiante => {%>        
+                    <tr>
+                      <td><%= estudiante.nombre %></td>
+                      <td><%= estudiante.cedula %></td>
+
+                      <%if (estudiante.calificaciones != []) {%>
+
+                          <td><input type="number" id="lapso1_<%=estudiante.estudiante_id%>" value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 1)?.calificacion || '' %>"></td>
+                          <td><input type="number" id="lapso2_<%=estudiante.estudiante_id%>" value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 2)?.calificacion || '' %>"></td>
+                          <td><input type="number" id="lapso3_<%=estudiante.estudiante_id%>" value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 3)?.calificacion || '' %>"></td>
+
+                      <%} else{%>
+                        <td><input type="number" id="lapso1_<%=estudiante.estudiante_id%>"></td>
+                        <td><input type="number"  id="lapso2_<%=estudiante.estudiante_id%>"></td>
+                        <td><input type="number" id="lapso3_<%=estudiante.estudiante_id%>"></td>
+                      <%}%>
+                      <td><input type="number" disabled></td>
+                    </tr>
+
+                <%})%>
               </table>
+
+              <button id="guardar-boton" style="margin-top: 15px;">Guardar</button>
             </form>
-           
+          
           </div>
+          <% } %> 
       </main>
   
   <!--... -->
@@ -107,6 +116,11 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function() {
+
+        document.getElementById("form-calificaciones").addEventListener("submit", function(event) {
+        event.preventDefault(); 
+        });
+
          const data = JSON.parse('<%- JSON.stringify(data) %>');
          const selectMateria = document.querySelector('select[name="materia"]');
          const selectGrados = document.querySelector('select[name="grado"]');
@@ -120,8 +134,56 @@
             const gradosDisponibles = data.asignaturas.filter(asignatura => asignatura.id == selectMateria.value)[0].grados;
             selectGrados.innerHTML = `${gradosDisponibles.map(grado => `<option value="${grado}">Grado ${grado}</option>`).join('')}`;
           })
+
+
+
+        // Codigo para manejar el envio de datos:
+        const datos = [];
+        const obtenerData = () => {
+            data.calificaciones.forEach(element => {
+              const inputLapso1 = document.querySelector(`#lapso1_${element.estudiante_id}`);
+              const inputLapso2 = document.querySelector(`#lapso2_${element.estudiante_id}`);
+              const inputLapso3 = document.querySelector(`#lapso3_${element.estudiante_id}`);
+
+              const temp = {
+                estudiante_id: element.estudiante_id,
+                materia_id: parseInt(element.materia_id),
+                periodo_id: data.periodo.id,
+                anio: parseInt(element.anio),
+                seccion: element.seccion,
+                lapso1: inputLapso1.value == '' ? 0 : parseFloat(inputLapso1.value),
+                lapso2: inputLapso2.value == '' ? 0 : parseFloat(inputLapso2.value),
+                lapso3: inputLapso3.value == '' ? 0 : parseFloat(inputLapso3.value)
+              }
+
+              datos.push(temp);
+            }); 
+            
+          enviarDatos();
+        }
+
+        const enviarDatos = () => {
+          fetch('/docente/carga-notas/guardar', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({data: datos})
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+          })
+        }
+
+        // Boton de envio de datos
+
+        const boton = document.querySelector('#guardar-boton');
+        boton.addEventListener('click', () => {
+          obtenerData();
+        })
       })
-      </script>
+    </script>
     
 </body>
 </html>

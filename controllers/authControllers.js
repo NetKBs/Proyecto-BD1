@@ -3,12 +3,51 @@ const jwt = require("jsonwebtoken")
 const usuarioModels = require("../models/usuarioModels")
 const coordinadorModels = require('../models/coordinadorModels')
 const docenteModels = require('../models/docenteModels')
+const representanteModels = require('../models/representanteModels')
+
+exports.signUp = (req, res) => {
+    res.render('signup', { data: {} });
+}
+
+exports.signUpAuth = async (req, res) => {
+    const body = req.body
+    const representante = await representanteModels.representanteByCedula(body.cedula)
+    if (!representante) {
+        console.log("No existe representante")
+        res.redirect("/auth/signup")
+        return
+
+    } 
+
+    if (representante.usuario_id != null) {
+        console.log("Este representante ya tiene cuenta")
+        res.redirect("/auth/login")
+        return
+    }
+
+    const usuarioExists = await usuarioModels.getUsuarioByNombre(body.username)
+    if (usuarioExists) {
+        console.log("El usuario ya existe")
+        res.redirect("/auth/signup")
+        return
+    }
+
+
+    const idUsuario = await usuarioModels.crearUsuario(body)
+    console.log(idUsuario)
+    const asignar = await representanteModels.asignarUsuarioId(representante.id, idUsuario)
+
+    res.redirect('/auth/login')
+}
+
 
 exports.login = (req, res) => {
+    
     if (req.cookies.token) {
         return alreadyLoggedIn(req, res);
     }
     res.render('login', { data: {} });
+
 };
 
 const alreadyLoggedIn = (req, res) => {
@@ -18,7 +57,7 @@ const alreadyLoggedIn = (req, res) => {
             case 'Coordinador':
                 return res.redirect('/coordinador');
             case 'Representante':
-                //return res.redirect('/representante');
+                return res.redirect('/representante');
             case 'Docente':
                 return res.redirect('/docente');
             default:
@@ -59,6 +98,7 @@ exports.loginAuth = async (req, res) => {
             rol: rol.nombre,
             user_id: user.id
         };
+        
 
         loggedIn(userData, res);
     } catch (error) {
@@ -80,7 +120,7 @@ const loggedIn = (user, res) => {
         case 'Coordinador':
             return res.redirect('/coordinador');
         case 'Representante':
-            //return res.redirect('/representante'); 
+            return res.redirect('/representante'); 
             break;
         case 'Docente':
             return res.redirect('/docente'); 
@@ -95,12 +135,12 @@ const createToken = (user) => {
 };
 
 const getUserDataByRol = async (rol, id) => {
-  
+
     switch (rol) {
         case 'Coordinador':
             return (await coordinadorModels.getCoordinadorByUserId(id)).id 
         case 'Representante':
-            //return { repre_id: getRepresentanteByUserId(id).id };
+            return (await representanteModels.getRepresentanteByUserId(id)).id;
         case 'Docente':
             return (await docenteModels.getDocenteByUserId(id)).id
         default:

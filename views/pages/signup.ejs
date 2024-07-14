@@ -12,17 +12,16 @@
         <div class="login">
             <img src="/images/logo.png" alt="LOGO">
             <h2>Regístrate</h2>
-            <form action="Regístrate">
+            <form action="/auth/signup" method="POST">
 
                 <label for="CI">Cédula</label>
-                <input type="text">
+                <input type="text" name="cedula">
                 
                 <label for="Usuario">Usuario</label>
-                <input type="text">
+                <input type="text" name="username">
                 
                 <label for="Clave">Contraseña</label>
-                <input type="password">
-
+                <input type="password" name="password">
 
                 <button type="submit">Entrar</button>
             </form>

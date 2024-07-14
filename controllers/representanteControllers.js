@@ -2,6 +2,24 @@ const representanteModels = require('../models/representanteModels')
 const estudianteModels = require('../models/estudianteModels')
 const usuarioModels = require('../models/usuarioModels')
 
+exports.representantePanel = (req, res) => {
+    res.render('representante/home', {data:{}})
+}
+
+exports.consultarNotas = (req, res) => {
+    res.render('representante/consultar_notas', {data:{}})
+}
+
+
+
+
+
+
+
+/*
+    Controladores de representante para usar en coordinador
+
+*/
 exports.representante = async (req, res) => {
     res.render('coordinador/representante_home', {data:{}})
 }
