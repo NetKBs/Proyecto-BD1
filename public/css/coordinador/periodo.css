@@ -62,12 +62,6 @@ h2 {
     }
  }
 
- footer {
-    position: fixed;
-    bottom: 0;
-    right: 0;
- }
-
 
  .header-main {
     display: flex;
@@ -127,7 +121,6 @@ a {
     color: #fff;
     font-size: 14px;
     font-weight: bold;
-    background-color: #011140;
     margin-bottom: 5px;
     padding: 10px 20px;
     border-radius: 4px;
@@ -136,4 +129,10 @@ a {
 
 a:hover {
     background-color: #0056b3;
-}
+} 
+
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+ }

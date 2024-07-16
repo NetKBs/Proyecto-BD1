@@ -44,6 +44,7 @@ exports.signUpAuth = async (req, res) => {
 exports.login = (req, res) => {
     
     if (req.cookies.token) {
+  
         return alreadyLoggedIn(req, res);
     }
     res.render('login', { data: {} });
@@ -52,6 +53,7 @@ exports.login = (req, res) => {
 
 const alreadyLoggedIn = (req, res) => {
     try {
+     
         const user = jwt.verify(req.cookies.token, "SECRET");
         switch (user.user.rol) {
             case 'Coordinador':

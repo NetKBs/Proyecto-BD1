@@ -38,6 +38,7 @@ exports.cargaNotasView = async (req, res) => {
     const user = req.user.user
     const cargas = await cargaAcademicaModels.cargasByDocenteID(user.id)
     const periodoActivo = await periodoModels.buscarPeriodoActivo();
+    console.log(periodoActivo)
     const periodoDatos = await periodoModels.getPeriodoById(periodoActivo.id);
     const asignaturas = await asignaturaModels.getAsignaturas();
     res.render('docente/notes', {data:{cargas: cargas, asignaturas: asignaturas, periodo: periodoDatos}})
