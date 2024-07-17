@@ -17,7 +17,7 @@
     <header>
         <div id="left-header">
             <a href="#"><img src="/images/logo.png" alt="logo"></a>
-            <h1>Coordinador Abiham Ramos</h1>
+            <h1>Colegio Santa Marta - Coordinación</h1>
         </div>
     
         <!-- OPCIONES DEL HEADER ACA -->
@@ -69,7 +69,21 @@
                         </select>
     
                         <label for="cedula">Cedula</label>
-                        <input type="text" id="cedula" name="cedula">
+                        <input type="text" id="cedula" name="cedula" oninput="validaNumericos();">
+
+                        
+
+                        <script>
+                            function validaNumericos() {
+                                var inputCedula = document.getElementById('cedula');
+                                var valor = inputCedula.value;
+                                if (!/^\d{1,8}$/.test(valor)) {
+                                    inputCedula.setCustomValidity('Por favor, ingresa un número de 8 digitos (si tiene 7 un 0 al inicio).');
+                                } else {
+                                    inputCedula.setCustomValidity('');
+                                }
+                            }
+                        </script>
     
                         <label for="estado_civil">Estado Civil</label>
                         <select name="estado_civil">
