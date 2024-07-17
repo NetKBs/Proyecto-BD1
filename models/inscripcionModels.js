@@ -4,10 +4,10 @@ exports.inscripcionCrear = async (body) => {
     return await new Promise((resolve, reject) => {
         db.run(
             `INSERT INTO inscripcion_estudiante_anio (
-            estudiante_id, periodo_id, anio, seccion
+            estudiante_id, periodo_id, anio, seccion, aprobado
             ) 
-            VALUES (?, ?, ?, ?)`,
-            [body.estudiante_id, body.periodo_id, body.grado, body.seccion],
+            VALUES (?, ?, ?, ?, ?)`,
+            [body.estudiante_id, body.periodo_id, body.grado, body.seccion, 0],
             function (err) {
                 if (err) {
                     reject(err);
@@ -56,6 +56,32 @@ exports.getEstudiantesByPeriodoSeccion = async (periodo_id, seccion) => {
                 WHERE periodo_id = ? AND seccion = ?
                 `,
                 [periodo_id, seccion],
+                (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(rows);
+                    }
+                }
+            )
+        })
+
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
+
+exports.getAniosInscripcionById = async (id_estudiante) => {
+    try {
+        return await new Promise((resolve, reject) => {
+            db.all(
+                `
+                SELECT DISTINCT anio FROM inscripcion_estudiante_anio
+                WHERE estudiante_id = ?
+                `,
+                [id_estudiante],
                 (err, rows) => {
                     if (err) {
                         reject(err);

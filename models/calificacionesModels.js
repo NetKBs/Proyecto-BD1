@@ -53,7 +53,6 @@ exports.getBoletinesNotas = async (id_estudiante, anio) => {
 
         // obtener la carga académica de ese periodo
         const cargaAcademica = await cargaAcademicaModels.cargasByPeriodoSeccionAnio(inscrito.periodo_id, inscrito.seccion, inscrito.anio)
-        console.log(cargaAcademica)
 
         // Obtener las materias que se ven en ese año escolar en especifico
         const materias = await asignaturaModels.getAsignaturaByAnio(anio)
@@ -82,7 +81,7 @@ exports.getBoletinesNotas = async (id_estudiante, anio) => {
         });
 
         const boletinesNotasGrupos = {};
-        console.log(boletinesNotas)
+
         for (const boletinNota of boletinesNotas) {
             const { materia_id, lapso, calificacion } = boletinNota;
 

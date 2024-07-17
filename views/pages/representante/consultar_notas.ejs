@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,122 +19,95 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <div id="left-header">
             <a href="#"><img src="/images/logo.png" alt="logo"></a>
             <h1>Colegio Santa Marta - Representantes</h1>
         </div>
-    
-       
+
+
         <div id="right-header">
             <a href="/auth/logout">Salir</a>
-        <div>
+            <div>
     </header>
 
     <nav id="sidebar">
-        
-         <a href="/representante">Inicio</a>
-        
-         <a href="/representante/consultar_notas" class="actual-link-sidebar">Consultar Notas</a>
+
+        <a href="/representante">Inicio</a>
+        <a href="/representante/consultar-notas" class="actual-link-sidebar">Consultar Notas</a>
 
     </nav>
 
     <main class="content-main">
         <h2>Notas Acumuladas</h2>
         <div class="card-seleccionar">
-            <h3>Nombre del Alumno</h3>
-            <select>
-                <option>Abiham Ramos</option>
-                <option>Inés Sanchez</option>
-                
-             </select>
-            <h3>Seleccione el Año</h3>
-             <select>
-                <option>1er Año</option>
-                <option>2do Año</option>
-                <option>3er Año</option>
-             </select>
-             <input type="submit" value="Buscar">
-        </div>
+            <form action="/representante/consultar-notas/buscar" method="GET">
+                <select name="estudiante" id="estudiante">
+                    <% var names=[]; %>
+                        <% data.representados.forEach(representado=> {
+                            representado.forEach(boletines => {
+                            boletines.forEach(boletin => {
+                            if (!names.includes(boletin.boletin.estudiante.nombre)) {
+                            names.push(boletin.boletin.estudiante.nombre);
+                            %>
+                            <option value="<%= boletin.boletin.estudiante.id %>">
+                                <%= boletin.boletin.estudiante.nombre %>
+                            </option>
+                            <% } }); }); }); %>
+                </select>
+
+                <select name="grado" id="anio">
+                </select>
+                <input type="submit" value="Consultar">
+            </form>
+
         </div>
 
-        <div class="tabla">
-            <h3>Lapso 1</h3>
-            
-            <!--Crear una tabla con codigo, Asignatura y Nota de cada lapso-->
-            <table>
-                
-                <tr>
-                    <th>Código</th>
-                    <th>Asignatura</th>
-                    <th>Nota</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Matemáticas</td>
-                    <td>15</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Lenguaje</td>
-                    <td>17</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Historia</td>
-                    <td>16</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Biología y Geología</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Educación Física</td>
-                    <td>12</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Educación Plástica, Visual y Audiovisual</td>
-                    <td>19</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Geografía</td>
-                    <td>19</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Lengua Extranjera</td>
-                    <td>11</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Religión o Valores Éticos</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td><h3>Nota Final</h3></td>
-                    <td>-</td>
-                    <td><h3>16</h3></td>
-                </tr>
-            </table>
-        </div>
-      
-        
     </main>
-    
-    
+
+
     <footer>
         <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
     </footer>
-    
-    
-    
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const estudianteSelect = document.querySelector('#estudiante');
+            const anioSelect = document.querySelector('#anio');
+            const data = JSON.parse('<%- JSON.stringify(data) %>');
+
+
+            const anioSelectAsignar = () => {
+                const estudianteSeleccionado = estudianteSelect.value;
+
+                const aniosDisponibles = data.representados
+                    .flatMap(representado => representado || [])
+                    .flatMap(boletines => boletines || [])
+                    .filter(boletin => boletin.boletin.estudiante.id == estudianteSeleccionado)
+                    .map(boletin => boletin.boletin.anio)
+                   
+                anioSelect.innerHTML = '';
+                aniosDisponibles.forEach(anio => {
+                    const option = document.createElement('option');
+                    option.value = anio;
+                    option.textContent = anio;
+                    anioSelect.appendChild(option);
+                });
+            }
+
+
+            estudianteSelect.addEventListener('change', function () {
+                anioSelectAsignar();
+            });
+
+            anioSelectAsignar()
+
+        });
+
+    </script>
 </body>
 
 </html>
-
