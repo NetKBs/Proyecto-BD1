@@ -46,6 +46,32 @@ exports.getEstudianteByIdAnio = async (id_estudiante, anio) => {
     }
 }
 
+
+exports.getEstudiantesByPeriodoSeccion = async (periodo_id, seccion) => {
+    try {
+        return await new Promise((resolve, reject) => {
+            db.all(
+                `
+                SELECT * FROM inscripcion_estudiante_anio
+                WHERE periodo_id = ? AND seccion = ?
+                `,
+                [periodo_id, seccion],
+                (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(rows);
+                    }
+                }
+            )
+        })
+
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
 exports.getEstudianteById = async (id_estudiante) => {
     try {
         return await new Promise((resolve, reject) => {

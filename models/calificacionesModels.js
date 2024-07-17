@@ -28,11 +28,11 @@ exports.getCalificacionesEstudiantes = async (body) => {
                 );
             });
         });
-        
+
         // Wait for all promises to resolve
         const calificacionesPromises = await Promise.all(promises);
         return calificacionesPromises;
-        
+
     } catch (error) {
         console.log(error)
         throw error
@@ -82,10 +82,10 @@ exports.getBoletinesNotas = async (id_estudiante, anio) => {
         });
 
         const boletinesNotasGrupos = {};
-       console.log(boletinesNotas)
+        console.log(boletinesNotas)
         for (const boletinNota of boletinesNotas) {
             const { materia_id, lapso, calificacion } = boletinNota;
-           
+
 
             if (!boletinesNotasGrupos[materia_id]) {
                 const materia = materias.find(materia => materia.id === materia_id);
@@ -131,10 +131,10 @@ exports.getBoletinesNotas = async (id_estudiante, anio) => {
             }
         }
 
-        const data = {asignaturas: boletinesNotasGrupos}
+        const data = { asignaturas: boletinesNotasGrupos }
         // imprimir asignaturas en data
         data.asignaturas = Object.values(data.asignaturas)
-        
+
 
         // Agregar datos relevantes del usuario
         const estudiante = await estudianteModels.estudianteById(id_estudiante)
@@ -271,33 +271,49 @@ exports.getNotasFinales = async (id_estudiante) => {
 
 exports.getNotasFinalByPeriodoSeccionMateria = async (periodo_id, seccion, materia_id) => {
     try {
-        const data = { notas: [] };
+        const data = { notas: {} };
+
+        // 
 
         // Obtener la información de los inscritos
         const inscritos = await inscripcionModels.getEstudiantesByPeriodoSeccion(periodo_id, seccion);
 
         // Obtener las notas de cada estudiante
         for (const inscrito of inscritos) {
-            const notas = await exports.getBoletinesNotas(inscrito.estudiante_id);
-            let notaFinal = 0;
+            const notas = await exports.getBoletinesNotas(inscrito.estudiante_id, inscrito.anio);
 
-            for (const nota of notas.boletin.asignaturas) {
-                if (nota.id === materia_id) {
-                    notaFinal = (notaFinal + nota.lapso1 + nota.lapso2 + nota.lapso3) / 3;
-                    break;
+            for (const nota of notas.asignaturas) {
+                const asignatura_id = (await asignaturaModels.getAsignaturaIdPorNombre(nota.nombre)).id
+
+                if (asignatura_id == materia_id) {
+                    const notaFinal = (nota.lapso1 + nota.lapso2 + nota.lapso3) / 3;
+
+                    const estudiante = await estudianteModels.estudianteById(inscrito.estudiante_id);
+                    
+                    const materia = nota.nombre;
+                    const docente = nota.docente;
+                    const anio = inscrito.anio;
+
+                    if (!data.notas[anio]) {
+                        data.notas[anio] = [];
+                    }
+
+                    data.notas[anio].anio = anio;
+                    data.notas[anio].push({
+                        id_estudiante: inscrito.estudiante_id,
+                        nombre_estudiante : `${estudiante.primer_nombre} ${estudiante.primer_apellido}`,
+                        cedula: estudiante.cedula,
+                        materia,
+                        docente,
+                        anio,
+                        notaFinal: notaFinal.toFixed(2)
+                    });
                 }
             }
-
-            data.notas.push({
-                id: inscrito.estudiante_id,
-                nombre: `${inscrito.primer_nombre} ${inscrito.primer_apellido}`,
-                cedula: inscrito.cedula,
-                notaFinal: notaFinal
-            });
         }
-
-        console.log(data);
-        //return data;
+        
+        data.notas = Object.values(data.notas);
+        return data;
 
     } catch (error) {
         console.log(error);
@@ -312,7 +328,7 @@ exports.cargarNotas = async (data) => {
         for (let lapso = 1; lapso <= 3; lapso++) {
             const { estudiante_id, materia_id, periodo_id, anio, seccion } = body;
             const nota = body[`lapso${lapso}`];
-            
+
             if (nota > 0) {
                 const result = await new Promise((resolve, reject) => db.get(
                     `SELECT id, calificacion FROM calificacion WHERE estudiante_id = ? AND materia_id = ? AND periodo_id = ? AND anio = ? AND lapso = ? AND seccion = ?`,
@@ -324,7 +340,7 @@ exports.cargarNotas = async (data) => {
                             resolve(row);
                         }
                     }
-                    )
+                )
                 )
                 if (result) {
                     await new Promise((resolve, reject) => db.run(
@@ -341,7 +357,7 @@ exports.cargarNotas = async (data) => {
                     );
 
                 } else {
-                    await new Promise ((resolve, reject) => db.run(
+                    await new Promise((resolve, reject) => db.run(
                         `INSERT INTO calificacion (estudiante_id, materia_id, periodo_id, docente_id, anio, lapso, seccion, calificacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
                         [estudiante_id, materia_id, periodo_id, 7, anio, lapso, seccion, nota],
                         (err) => {

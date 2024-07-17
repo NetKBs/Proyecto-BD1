@@ -55,6 +55,31 @@ exports.getAsignaturas = async () => {
     }
 }
 
+
+exports.getAsignaturaIdPorNombre = async (nombre) => {
+    try {
+        // Fetch the data from the periodo_academico table
+        const materia = await new Promise((resolve, reject) => {
+            db.get(
+                `SELECT id FROM materia WHERE nombre LIKE ?`,
+                [nombre],
+                (err, row) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(row);
+                    }
+                }
+            );
+        });
+
+        return materia;
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 exports.getAsignaturaById = async (id) => {
     try {
         // Fetch the data from the periodo_academico table

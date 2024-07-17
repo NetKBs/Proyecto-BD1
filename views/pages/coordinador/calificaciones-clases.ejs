@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="/css/init.css">
+  <link rel="stylesheet" href="/css/sidebar.css">
+  <link rel="stylesheet" href="/css/header_footer.css">
+  <link rel="stylesheet" href="/css/coordinador/calificaciones.css">
+  <meta charset="UTF-8">
+</head>
+
+<body>
+
+  <header>
+    <div id="left-header">
+      <a href="#"><img src="/images/logo.png" alt="logo"></a>
+      <h1>Santa María</h1>
+    </div>
+
+    <!-- OPCIONES DEL HEADER ACA -->
+    <div id="right-header">
+      <a href="/auth/logout">Salir</a>
+      <div>
+  </header>
+
+
+
+  <nav id="sidebar">
+    <!-- OPCIONES DE LA SIDEBAR ACA -->
+    <a href="/coordinador">Inicio</a>
+    <a href="/coordinador/periodo">Periodos</a>
+    <a href="/coordinador/asignatura">Asignaturas</a>
+    <a href="/coordinador/carga-academica">Cargas Académicas</a>
+    <a href="/coordinador/inscripcion">Inscripción</a>
+    <a href="/coordinador/calificaciones" class="actual-link-sidebar">Calificaciones</a>
+    <a href="/coordinador/docente">Docentes</a>
+    <a href="/coordinador/estudiante">Estudiantes</a>
+    <a href="/coordinador/representante">Representantes</a>
+  </nav>
+
+  <main class="content-main">
+
+    <div class="header-main">
+        <a href="/coordinador/calificaciones" class="nuevo">Regresar</a>
+    </div>
+
+    <div class="card-docente">
+
+        <div class="header-inside">
+            <h2>
+                Calificaciones Finales Por Clases
+            </h2>
+        </div>
+
+        <% data.notas.forEach((anio, index) => { %>
+            <div class="header-inside">
+                <h2>Año <%= (index+1) %></h2>
+            </div>
+            <table>
+                <tr>
+                    <th>Estudiante</th>
+                    <th>Calificación</th>
+                    <th>Impartido Por:</th>
+                </tr>
+
+                <% anio.forEach(asignatura => { %>
+                    <tr>
+                        <td><%= asignatura.nombre_estudiante %></td>
+                        <!-- Calculamos los 3 lapsos la nota final-->
+                        <td>
+                            <p><%= asignatura.notaFinal %></p>
+                        </td>
+                        <td><%= asignatura.docente %></td>
+                    </tr>
+                <%})%>
+               
+            </table>
+            <div class="content">
+                <div>
+                    <p>Cantidad aprobados: <%= anio.cantidad_aprobados %></p>
+ 
+                  
+                </div>
+                <div>
+                    <p>Cantidad reprobados:  <%= anio.cantidad_reprobados %></p>
+                   
+                </div>
+                <div>
+                    <p>Promedio de la clase: <%= anio.promedio %></p>
+  
+                </div>
+            </div>
+        <%})%>
+
+       
+
+
+
+  
+    </div>
+
+    <footer>
+      <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- ERRORES -->
+   
+
+</body>
+
+</html>

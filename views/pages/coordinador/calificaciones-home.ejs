@@ -89,7 +89,7 @@
             <h2>Notas Finales de una Clase</h2>
           </div>
 
-          <form action="/coordinador/calificaciones/clases" method="">
+          <form action="/coordinador/calificaciones/clases" method="GET">
               <label for="periodo">Seleccione un Periodo</label>
               <select name="periodo" id="periodos">
                 <% data.periodos.forEach(periodo => { %>
@@ -100,11 +100,11 @@
 
               <label for="seccion">Seleccione una Sección</label>
               <select name="seccion" id="secciones">
-                <option value="">A</option>
-                <option value="">B</option>
-                <option value="">C</option>
-                <option value="">D</option>
-                <option value="">E</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="V">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
               </select>
 
               <label for="materia">Seleccione una Materia</label>

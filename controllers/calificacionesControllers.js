@@ -7,7 +7,7 @@ const asignaturaModels = require('../models/asignaturaModels')
 exports.calificaciones = async (req, res) => {
     const asignaturas = await asignaturaModels.getAsignaturas();
     const periodo = await periodoModels.getPeriodos();
-    console.log({asignaturas: asignaturas, periodos: periodo})
+
     res.render('coordinador/calificaciones-home', {data:{asignaturas: asignaturas, periodos: periodo}})
 }
 
@@ -56,5 +56,32 @@ exports.finales = async (req, res) => {
 
 exports.clases = async (req, res) => {
     body = req.query
-    console.log(body)
+    const result = await calificacionesModels.getNotasFinalByPeriodoSeccionMateria(body.periodo, body.seccion, body.materia)
+    
+    result.notas.forEach(anio => {
+        let cantidad_aprobados = 0;
+        let cantidad_reprobados = 0;
+        let suma_notas = 0;
+        const aprobados = [];
+        const reprobados = [];
+        anio.forEach(nota => {
+            suma_notas += parseFloat(nota.notaFinal);
+            if (parseFloat(nota.notaFinal) >= 10) {
+                cantidad_aprobados++;
+                aprobados.push(nota);
+            } else {
+                cantidad_reprobados++;
+                reprobados.push(nota);
+            }
+        });
+        const promedio = suma_notas / anio.length;
+        anio.promedio = promedio.toFixed(2);
+        anio.cantidad_aprobados = cantidad_aprobados;
+        anio.cantidad_reprobados = cantidad_reprobados;
+        anio.aprobados = aprobados;
+        anio.reprobados = reprobados;
+    });
+
+    console.log(result)
+    res.render('coordinador/calificaciones-clases', {data: result})
 }
