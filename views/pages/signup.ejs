@@ -3,7 +3,7 @@
 <html>
     <head>
        <meta charset="utf-8">
-       <title>Login</title>
+       <title>SignUp</title>
        <link rel="stylesheet" href="/css/style-signup.css">
        <link rel="icon" href="">
     </head>
@@ -18,7 +18,22 @@
                 <input type="text" name="cedula">
                 
                 <label for="Usuario">Usuario</label>
-                <input type="text" name="username">
+                <input type="text" id="usuario" name="username" oninput="validaUsername();">
+
+                
+                <script>
+                    function validaUsername() {
+                        var inputUser = document.getElementById('usuario');
+                        var valor = inputUser.value;
+                        if (valor.length !== 7) {
+                            inputUser.setCustomValidity('El usuario debe contener 7 caracteres.');
+                        }else{
+                            inputUser.setCustomValidity('');
+                        
+
+                        }
+                    }
+                </script>
                 
                 <label for="Clave">Contraseña</label>
                 <input type="password" name="password">
