@@ -89,12 +89,13 @@
             <h2>Notas Finales de una Clase</h2>
           </div>
 
-          <form action="" method="">
+          <form action="/coordinador/calificaciones/clases" method="">
               <label for="periodo">Seleccione un Periodo</label>
               <select name="periodo" id="periodos">
-                <option value="">2022-2023</option>
-                <option value="">2023-2024</option>
-                <option value="">2024-2025</option>
+                <% data.periodos.forEach(periodo => { %>
+                  <option value="<%=periodo.id%>"><%=periodo.nombre%></option>
+                <% })%>
+                
               </select>
 
               <label for="seccion">Seleccione una Sección</label>
@@ -102,13 +103,15 @@
                 <option value="">A</option>
                 <option value="">B</option>
                 <option value="">C</option>
+                <option value="">D</option>
+                <option value="">E</option>
               </select>
 
               <label for="materia">Seleccione una Materia</label>
               <select name="materia" id="">
-                <option value="">Matemáticas</option>
-                <option value="">Inglés</option>
-                <option value="">Lenguaje</option>
+                <% data.asignaturas.forEach(asignatura => { %>
+                  <option value="<%=asignatura.id%>"><%=asignatura.nombre%></option>
+                <% })%>
               </select>
 
               <input type="submit" value="Consultar">

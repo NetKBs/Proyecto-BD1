@@ -1,9 +1,14 @@
 const estudianteModels = require('../models/estudianteModels')
 const calificacionesModels = require('../models/calificacionesModels')
+const periodoModels = require('../models/periodoModels')
+const asignaturaModels = require('../models/asignaturaModels')
 
 
 exports.calificaciones = async (req, res) => {
-    res.render('coordinador/calificaciones-home', {data:{}})
+    const asignaturas = await asignaturaModels.getAsignaturas();
+    const periodo = await periodoModels.getPeriodos();
+    console.log({asignaturas: asignaturas, periodos: periodo})
+    res.render('coordinador/calificaciones-home', {data:{asignaturas: asignaturas, periodos: periodo}})
 }
 
 exports.boletin = async (req, res) => {
@@ -51,4 +56,5 @@ exports.finales = async (req, res) => {
 
 exports.clases = async (req, res) => {
     body = req.query
+    console.log(body)
 }

@@ -5,7 +5,7 @@ exports.getPeriodos = async () => {
         // Fetch the data from the periodo_academico table
         const periodos = await new Promise((resolve, reject) => {
             db.all(
-                `SELECT * FROM periodo_academico`,
+                `SELECT * FROM periodo_academico ORDER BY nombre DESC`,
                 (err, rows) => {
                     if (err) {
                         reject(err);
