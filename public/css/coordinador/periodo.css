@@ -30,6 +30,14 @@ h2 {
     border-collapse: collapse;
     margin-top: 20px;
 
+    & a {
+        background-color: #1e0173;
+    }
+
+    a:hover {
+        background-color: #0056b3;
+    } 
+
     & th, td {
         padding: 10px;
        
@@ -48,7 +56,7 @@ h2 {
 
     .edit-button {
         background-color: #011140;
-        color: #fff;
+        color: #ffffff;
         font-weight: bold;
         border: none;
         padding: 5px 15px;
@@ -101,7 +109,7 @@ h2 {
 
     & a {
         text-decoration: none;
-        color: #fff;
+        color: #ffffff;
         font-size: 14px;
         font-weight: bold;
         background-color: #011140;
@@ -118,7 +126,7 @@ h2 {
 
 a {
     text-decoration: none;
-    color: #fff;
+    color: #ffffff;
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 5px;

@@ -137,7 +137,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #030067;
 }
 
 table {
@@ -160,7 +160,9 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+    position: fixed;
 }
+
 
 @media (max-width: 768px) {
     .content-notes {
