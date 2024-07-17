@@ -48,29 +48,37 @@
 
         <div class="header-inside">
             <h2>
-                Boletín De Notas
+                Calificaciones Finales
             </h2>
         </div>
 
-        <table>
-            <tr>
-                <th>Asignatura</th>
-                <th>Lapso 1</th>
-                <th>Lapso 2</th>
-                <th>Lapso 3</th>
-                <th>Impartido Por:</th>
-            </tr>
-
-            <% data.boletin.asignaturas.forEach(asignatura => { %>
+        <% data.notas.asignaturas.forEach((anio, index) => { %>
+            <div class="header-inside">
+                <h2>Año <%= (index+1) %></h2>
+            </div>
+            <table>
                 <tr>
-                  <td><%= asignatura.nombre %></td>
-                  <td><%= asignatura.lapso1 %></td>
-                  <td><%= asignatura.lapso2 %></td>
-                  <td><%= asignatura.lapso3 %></td>
-                  <td><%= asignatura.docente %></td>
+                    <th>Asignatura</th>
+                    <th>Calificación</th>
+                    <th>Impartido Por:</th>
                 </tr>
-              <% }) %>
-        </table>
+
+                <% anio.forEach(asignatura => { %>
+                    <tr>
+                        <td><%= asignatura.nombre %></td>
+                        <!-- Calculamos los 3 lapsos la nota final-->
+                        <td>
+                            <p><%= ((asignatura.lapso1 + asignatura.lapso2 + asignatura.lapso3)/3).toFixed(2) %></p>
+                        </td>
+                        <td><%= asignatura.docente %></td>
+                    </tr>
+                <%})%>
+               
+            </table>
+
+        <%})%>
+
+       
 
 
 

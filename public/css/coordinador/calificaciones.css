@@ -74,6 +74,45 @@
         display: block;
       }
 
+      & table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+
+        & button {
+            cursor: pointer;
+            border: none;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: #011140;
+            margin-bottom: 5px;
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+    
+        & button:hover {
+            background-color: #0056b3;
+        }
+
+        & th, td {
+            padding: 10px;
+        
+            text-align: center;
+        }
+
+        & th {
+            background-color: #e0e0e0;
+            font-weight: bold;
+        }
+
+        /* Estilo para las filas impares */
+        & tr:nth-child(odd) {
+            background-color: #f5f5f5;
+        }
+    }
+
 }
 
 @media (max-width: 880px) {
@@ -153,3 +192,17 @@
     }
 
  }
+
+ .nuevo {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    background-color: #011140;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 5px;
+}
+.nuevo:hover {
+    background-color: #0056b3;
+}

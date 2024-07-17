@@ -41,6 +41,7 @@ exports.cargaNotasView = async (req, res) => {
     console.log(periodoActivo)
     const periodoDatos = await periodoModels.getPeriodoById(periodoActivo.id);
     const asignaturas = await asignaturaModels.getAsignaturas();
+
     res.render('docente/notes', {data:{cargas: cargas, asignaturas: asignaturas, periodo: periodoDatos}})
 }
 
@@ -76,17 +77,21 @@ exports.listado = async (req, res) => {
                     anio: body.grado, seccion: body.seccion})
             }
 
-            res.render('docente/notes', {data:{cargas: cargas, asignaturas: asignaturas, periodo: periodoDatos, calificaciones: calificaciones}})
+            res.render('docente/listado', {data:{cargas: cargas, asignaturas: asignaturas, periodo: periodoDatos, calificaciones: calificaciones}})
         }
     }
     
 }
 
 exports.cargaNotasGuardar = async (req, res) => {
+    console.log("HOLA")
     body = req.body
-    console.log("Entre")
+    user = req.user.user
+    const docente = await docenteModels.getDocenteByUserId(user.user_id)
+    body.docente_id = docente.id
+    console.log(body)
     const result = await calificacionModels.cargarNotas(body)
-    console.log("Ya terminé señor")
+    return res.redirect('/docente/carga-notas')
 }
 
 

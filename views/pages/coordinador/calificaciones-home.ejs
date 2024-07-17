@@ -65,7 +65,7 @@
               <option value="5">5to</option>
             </select>
             <input type="submit" value="Consultar">
-            <% if (data.error){%> <p class="error"><%= data.error %></p> <%}%>
+           
           </form>
 
 
@@ -75,7 +75,7 @@
           <div class="header-inside">
             <h2>Notas Finales de un Estudiante</h2>
           </div>
-          <form action="" method="">
+          <form action="/coordinador/calificaciones/finales" method="GET">
             <label for="cedula_alumno">Cedula del Alumno</label>
             <input type="number" name="cedula_alumno">
             <input type="submit" value="Consultar">
@@ -115,7 +115,7 @@
           </form>
 
         </div>
-
+        <% if (data.error){%> <p class="error"><%= data.error %></p> <%}%>
       </div>
     </div>
 

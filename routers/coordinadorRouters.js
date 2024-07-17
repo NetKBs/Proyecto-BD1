@@ -68,6 +68,7 @@ router.post('/carga-academica/editar/:id', cargaAcademicaControllers.editarCarga
 // Rutas para manejar calificaciones
 router.get('/calificaciones', calificacionesControllers.calificaciones);
 router.get('/calificaciones/boletin', calificacionesControllers.boletin);
-
+router.get('/calificaciones/finales', calificacionesControllers.finales);
+router.get('/calificaciones/clases', calificacionesControllers.clases);
 
 module.exports = router
