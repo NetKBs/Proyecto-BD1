@@ -22,7 +22,7 @@ exports.crearCargaAcademica = async (body) => {
     }
 }
 
-exports.cargasByDocenteID = async (docente_id) => {
+exports.cargasByDocenteID = async (docente_id, periodo_id) => {
     try {
         return await new Promise((resolve, reject) => {
             db.all(
@@ -30,10 +30,10 @@ exports.cargasByDocenteID = async (docente_id) => {
                     SELECT c.id AS carga_id, c.anio, c.seccion, m.nombre FROM carga_academica AS c
                     INNER JOIN docente AS d ON d.id = c.docente_id
                     INNER JOIN materia AS m ON m.id = c.materia_id
-                    WHERE d.id = ?
+                    WHERE d.id = ? AND c.periodo_id = ?
                     ORDER BY  m.nombre 
                 `,
-                [docente_id],
+                [docente_id, periodo_id],
                 function (err, rows) {
                     if (err) {
                         reject(err);

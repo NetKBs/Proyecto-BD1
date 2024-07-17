@@ -66,22 +66,34 @@
                                     <%= estudiante.cedula %>
                                 </td>
 
+                                <p><%= data.periodo.lapso_activo %></p>
+                                <p><%= data.periodo.lapso_activo != 1 ? "sdf" : "" %></p>
+                                
+
                                 <%if (estudiante.calificaciones !=[]) {%>
 
-                                    <td><input type="number" id="lapso1_<%=estudiante.estudiante_id%>"
-                                            value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 1)?.calificacion || '' %>">
+                                    
+
+                                    <td><input  type="number"  id="lapso1_<%=estudiante.estudiante_id%>" 
+                                            value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 1)?.calificacion || '' %>"
+                                            <%= data.periodo.lapso_activo != 1 ? 'disabled' : '' %>>
+                                            
                                     </td>
-                                    <td><input type="number" id="lapso2_<%=estudiante.estudiante_id%>"
-                                            value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 2)?.calificacion || '' %>">
+                                    <td><input type="number" id="lapso2_<%=estudiante.estudiante_id%>" <%data.periodo.lapso_activo != 2 ? 'disabled' : ''%>
+                                            value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 2)?.calificacion || '' %>"
+                                            <%= data.periodo.lapso_activo != 2 ? 'disabled' : '' %>
+                                            >
                                     </td>
-                                    <td><input type="number" id="lapso3_<%=estudiante.estudiante_id%>"
-                                            value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 3)?.calificacion || '' %>">
+                                    <td><input type="number" id="lapso3_<%=estudiante.estudiante_id%>" <%data.periodo.lapso_activo != 3 ? 'disabled' : ''%>
+                                            value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 3)?.calificacion || '' %>"
+                                            <%= data.periodo.lapso_activo != 3 ? 'disabled' : '' %>
+                                            >
                                     </td>
 
                                     <%} else{%>
-                                        <td><input type="number" id="lapso1_<%=estudiante.estudiante_id%>"></td>
-                                        <td><input type="number" id="lapso2_<%=estudiante.estudiante_id%>"></td>
-                                        <td><input type="number" id="lapso3_<%=estudiante.estudiante_id%>"></td>
+                                        <td><input  <%= data.periodo.lapso_activo != 1 ? 'disabled' : '' %> type="number" id="lapso1_<%=estudiante.estudiante_id%>"></td>
+                                        <td><input  <%= data.periodo.lapso_activo != 2 ? 'disabled' : '' %> type="number" id="lapso2_<%=estudiante.estudiante_id%>"></td>
+                                        <td><input  <%= data.periodo.lapso_activo != 3 ? 'disabled' : '' %> type="number" id="lapso3_<%=estudiante.estudiante_id%>"></td>
                                         <%}%>
                                           
                             </tr>

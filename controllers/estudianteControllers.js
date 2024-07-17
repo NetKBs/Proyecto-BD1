@@ -16,10 +16,10 @@ exports.estudianteByCedula = async (req, res) => {
         const fechaActual = new Date();
         const edad = Math.floor((fechaActual - fechaNacimiento) / (1000 * 60 * 60 * 24 * 365.25));
         result.edad = edad
-        res.render('coordinador/estudiante_home', { data: {estudiante: result} })
+        const representantes = await estudianteModels.buscarRepresentantesByEstudianteId(result.id)
+
+        res.render('coordinador/estudiante_home', { data: {estudiante: result, representados: representantes} })
     }
-    
-    
 }
 
 exports.crearEstudianteView = async (req, res) => {

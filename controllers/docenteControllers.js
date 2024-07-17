@@ -36,8 +36,9 @@ exports.clave = async (req, res) => {
 
 exports.cargaNotasView = async (req, res) => {
     const user = req.user.user
-    const cargas = await cargaAcademicaModels.cargasByDocenteID(user.id)
     const periodoActivo = await periodoModels.buscarPeriodoActivo();
+    const cargas = await cargaAcademicaModels.cargasByDocenteID(user.id, periodoActivo.id)
+    
 
     if(!periodoActivo) {
         res.redirect('/docente')
@@ -54,9 +55,9 @@ exports.cargaNotasView = async (req, res) => {
 exports.listado = async (req, res) => {
     const body = req.query
     const user = req.user.user
-    const cargas = await cargaAcademicaModels.cargasByDocenteID(user.id)
     const periodoActivo = await periodoModels.buscarPeriodoActivo();
     const periodoDatos = await periodoModels.getPeriodoById(periodoActivo.id);
+    const cargas = await cargaAcademicaModels.cargasByDocenteID(user.id, periodoActivo.id)
     const asignaturas = await asignaturaModels.getAsignaturas();
 
     const newBody = {
@@ -64,8 +65,9 @@ exports.listado = async (req, res) => {
         anio: parseInt(body.grado),
         seccion: body.seccion
     }
+    console.log(newBody)
     const resultEstudiantes = await inscripcionModels.getEstudiantesInscritosFiltrados(newBody)
-
+    
     if (resultEstudiantes != []) {
         resultEstudiantes.materia = parseInt(body.materia)
         const calificacionesEstudiantes = await calificacionModels.getCalificacionesEstudiantes(resultEstudiantes)
@@ -83,6 +85,8 @@ exports.listado = async (req, res) => {
                     anio: body.grado, seccion: body.seccion})
             }
 
+            console.log(periodoDatos)
+            
             res.render('docente/listado', {data:{cargas: cargas, asignaturas: asignaturas, periodo: periodoDatos, calificaciones: calificaciones}})
         }
     }

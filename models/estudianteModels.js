@@ -31,6 +31,32 @@ const insertarDatosPersonales = async (data) => {
 }
 
 
+exports.buscarRepresentantesByEstudianteId = async (estudiante_id) => {
+    try {
+        return new Promise ((resolve, reject) => {
+            db.all(
+                `
+                SELECT * FROM representante_estudiante 
+                INNER JOIN representante ON representante_estudiante.representante_id = representante.id 
+                INNER JOIN persona ON representante.datos_personales_id = persona.id
+                WHERE representante_estudiante.estudiante_id = ?
+                `, 
+                [estudiante_id], 
+                (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(rows);
+                    }
+                })
+        })
+
+    } catch (error) {
+        console.error(error.message);
+        throw error
+    }
+}
+
 exports.crearEstudiante = async re_data => {
     
     const idDatosPersonales = await insertarDatosPersonales(re_data)

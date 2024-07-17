@@ -42,7 +42,8 @@ exports.crearCargaAcademica = async (req, res) => {
 exports.buscarCargaAcademica = async (req, res) => {
     body = req.query
     docente = await docenteModels.docenteByCedula(body.docente)
-    cargas = await cargaAcademicaModels.cargasByDocenteID(docente.id)
+    const periodoActivo = await periodoModels.buscarPeriodoActivo();
+    const cargas = await cargaAcademicaModels.cargasByDocenteID(docente.id, periodoActivo.id)
     res.render('coordinador/cargaAcademica-home', {data: {docente: docente, cargas: cargas}})
 }
 

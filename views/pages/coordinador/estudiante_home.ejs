@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/init.css">
     <link rel="stylesheet" href="/css/sidebar.css">
     <link rel="stylesheet" href="/css/header_footer.css">
+    <link rel="stylesheet" href="/css/coordinador/representante.css">
     <link rel="stylesheet" href="/css/coordinador/estudiante.css">
     <style>
         /* Estilos para el contenido principal cuando hay un sidebar*/
@@ -88,26 +89,32 @@
         </div>
         <% } %>
         
-        <!--<div class="card-inscripciones">
-            <div class="header-inside">
-                <h2>Inscripciones</h2>
+        <div class="card-representados">
+            
+            <div class="container">
+                
             </div>
- 
+            <% if (data.representados){%>
+            <!-- Acá saldrá los estudiantes que este representante representa -->
             <table>
                 <tr>
-                    <th>Fecha de inscripción</th>
-                    <th>Año académico</th>
-                    <th>Sección</th>
-                    <th>Estado</th>
+                    <th>Nombre Completo</th>
+                    <th>Cédula</th>
+    
                 </tr>
+                <% for (representado of data.representados){ %> 
                 <tr>
-                    <td>12/12/2022</td>
-                    <td>3ro</td>
-                    <td>Sección A</td>
-                    <td>Activo</td>
+                    <td>
+                        <%= representado.primer_nombre %> <%= representado.segundo_nombre %> 
+                        <%= representado.primer_apellido %> <%= representado.segundo_apellido %>
+                    </td>
+                    <td><%= representado.cedula %></td>
+                   
                 </tr>
+                <%}%>
             </table>
-        </div>-->
+            <%}%>
+        </div>
     
     </main>
     
