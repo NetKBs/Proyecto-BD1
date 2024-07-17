@@ -195,12 +195,37 @@ exports.crearPeriodo = async (body) => {
 
 exports.editarPeriodo = async (id, body) => {
     try {
+        if (body.estado === "1") {
+            // Verificar si el periodo ya tiene una fecha de finalizacion
+            const fechaFinalizacion = await new Promise((resolve, reject) => {
+                db.get(
+                    `SELECT fecha_fin FROM periodo_academico WHERE id = ?`,
+                    [id],
+                    (err, row) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(row.fecha_fin);
+                        }
+                    }
+                );
+            });
+
+            if (!fechaFinalizacion) {
+                // Si no tiene una fecha de finalizacion, sacar la fecha actual y agregarla al UPDATE
+                let fecha_actual = new Date();
+                fecha_actual = `${fecha_actual.getFullYear()}-${fecha_actual.getMonth() + 1}-${fecha_actual.getDate()}`
+                body.fecha_fin = fecha_actual;
+            } else {
+                body.fecha_fin = null;
+            }
+        }
 
         // Actualizar el nombre del periodo académico
         await new Promise((resolve, reject) => {
             db.run(
-                `UPDATE periodo_academico SET nombre = ?, finalizado = ?, lapso_activo = ? WHERE id = ?`,
-                [body.nombre, body.estado, body.lapso, id],
+                `UPDATE periodo_academico SET nombre = ?, finalizado = ?, lapso_activo = ?, fecha_fin = ? WHERE id = ?`,
+                [body.nombre, body.estado, body.lapso, body.fecha_fin , id],
                 function (err) {
                     if (err) {
                         reject(err);

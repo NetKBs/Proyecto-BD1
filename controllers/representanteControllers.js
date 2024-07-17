@@ -143,7 +143,7 @@ exports.eliminarRepresentante = async (req, res) => {
 exports.crearRepresentado = async (req, res) => {
     representante_id = req.params.id
     estudiante_cedula = req.body.representado
-    estudiante_id = (await estudianteModels.estudianteByCedula(estudiante_cedula)).id
+    estudiante_id = (await estudianteModels.estudianteByCedula(estudiante_cedula))
 
     if (!estudiante_id) {
         console.log({ error: 'Estudiante no encontrado' })
@@ -151,14 +151,13 @@ exports.crearRepresentado = async (req, res) => {
         return
     }
 
+
     result = await representanteModels.crearRepresentado(representante_id, estudiante_id)
     if (result instanceof Error) {
         console.log("Ocurrio un error al crear el representado:", result.message);
         res.redirect("/coordinador/representante")
         return
     }
-
-    //representado = await representanteModels.buscarRepresentadoByRepresentanteId(representante_id)
 
     res.redirect('/coordinador/representante')
 }
