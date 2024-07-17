@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coordinador - Inicio</title>
-    <link rel="stylesheet" href="/css/init.css">
-    <link rel="stylesheet" href="/css/sidebar.css">
-    <link rel="stylesheet" href="/css/header_footer.css">
-    <link rel="stylesheet" href="/css/docente/stylenotes.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinador - Inicio</title>
+  <link rel="stylesheet" href="/css/init.css">
+  <link rel="stylesheet" href="/css/sidebar.css">
+  <link rel="stylesheet" href="/css/header_footer.css">
+  <link rel="stylesheet" href="/css/docente/stylenotes.css">
 </head>
 <style>
-    .content-notes {
-        margin-left: 220px;
-        padding: 10px;
-        margin-top: 20px;
-        margin-bottom: 50px;
-    }
+  .content-notes {
+    margin-left: 220px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
 </style>
+
 <body>
+<<<<<<< HEAD
     <header>
         <div id="left-header">
             <a href="#"><img src="/images/logo.png" alt="logo"></a>
@@ -40,150 +43,154 @@
     
     <!-- ACÁ IRÁ EL CONTENIDO QUE SE MOSTRARÁ EN EL MEDIO DE LA PAGINA -->
     <!--... -->
-
-    <main class="content-notes">
-        <h2>Carga de Notas Académicas</h2>
-        <form action="/docente/carga-notas/listado" method="GET">
-            <label for="materia">Materia:</label>
-            <select id="materia" name="materia">
-              <%data.asignaturas.forEach(asignatura => { %>
-                <option value="<%= asignatura.id %>"><%= asignatura.nombre %></option>
-              <% }) %>        
-            </select>
-        
-            <label for="seccion">Sección:</label>
-            <select id="seccion" name="seccion">
-              <% data.periodo.secciones.forEach(seccion => { %>
-                <option value="<%= seccion %>">Seccion <%= seccion %></option>
-              <% }) %> 
-            </select>
-        
-            <label for="grado">Año:</label>
-            <select name="grado" id="grados-disponibles">
-            </select>
-            
-            <button type="submit" id="buscar">Buscar Listado</button>
-          </form>
+  <header>
+    <div id="left-header">
+      <a href="#"><img src="/images/logo.png" alt="logo"></a>
+      <h1>Docente Ines Sanchez</h1>
+    </div>
 
 
-          <% if (data.calificaciones) {%>
-          <div class="card-listado">
-            <form id="form-calificaciones">
-              <table>
-                <tr>
-                  <th>Estudiante</th>
-                  <th>Cedula</th>
-                  <th>Lapso 1</th>
-                  <th>Lapso 2</th>
-                  <th>Lapso 3</th>
-                  <th>Nota Final</th>
-                </tr>
+    <!-- OPCIONES DEL HEADER ACA -->
+    <div id="right-header">
+      <a href="/auth/logout">Salir</a>
+      <div>
+  </header>
 
-                <%data.calificaciones.forEach(estudiante => {%>        
-                    <tr>
-                      <td><%= estudiante.nombre %></td>
-                      <td><%= estudiante.cedula %></td>
+  <nav id="sidebar">
+    <!-- OPCIONES DE LA SIDEBAR ACA -->
+    <a href="/docente">Inicio</a>
+    <a href="/docente/carga-notas/listado" class="actual-link-sidebar">Carga De Notas</a>
+    <a href="/docente/clave">Cambio De Contraseña</a>
 
-                      <%if (estudiante.calificaciones != []) {%>
+  </nav>
 
-                          <td><input type="number" id="lapso1_<%=estudiante.estudiante_id%>" value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 1)?.calificacion || '' %>"></td>
-                          <td><input type="number" id="lapso2_<%=estudiante.estudiante_id%>" value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 2)?.calificacion || '' %>"></td>
-                          <td><input type="number" id="lapso3_<%=estudiante.estudiante_id%>" value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 3)?.calificacion || '' %>"></td>
-
-                      <%} else{%>
-                        <td><input type="number" id="lapso1_<%=estudiante.estudiante_id%>"></td>
-                        <td><input type="number"  id="lapso2_<%=estudiante.estudiante_id%>"></td>
-                        <td><input type="number" id="lapso3_<%=estudiante.estudiante_id%>"></td>
-                      <%}%>
-                      <td><input type="number" disabled></td>
-                    </tr>
-
-                <%})%>
-              </table>
-
-              <button id="guardar-boton" style="margin-top: 15px;">Guardar</button>
-            </form>
-          
-          </div>
-          <% } %> 
-      </main>
-  
+  <!-- ACÁ IRÁ EL CONTENIDO QUE SE MOSTRARÁ EN EL MEDIO DE LA PAGINA -->
   <!--... -->
-    
-    <footer>
-        <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
-    </footer>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
+  <main class="content-notes">
+    <h2>Carga de Notas Académicas</h2>
+    <form action="/docente/carga-notas/listado" method="GET">
+      <label for="materia">Materia:</label>
+      <select id="materia" name="materia">
+      </select>
 
-        document.getElementById("form-calificaciones").addEventListener("submit", function(event) {
-        event.preventDefault(); 
-        });
+      <label for="seccion">Sección:</label>
+      <select id="seccion" name="seccion">
+        <% data.periodo.secciones.forEach(seccion=> { %>
+          <option value="<%= seccion %>">Seccion <%= seccion %>
+          </option>
+          <% }) %>
+      </select>
 
-         const data = JSON.parse('<%- JSON.stringify(data) %>');
-         const selectMateria = document.querySelector('select[name="materia"]');
-         const selectGrados = document.querySelector('select[name="grado"]');
-         
-         const materiaSeleccionada = selectMateria.options[selectMateria.selectedIndex].value;
-         const gradosDisponibles = data.asignaturas.filter(asignatura => asignatura.id == materiaSeleccionada)[0].grados;
-         selectGrados.innerHTML = `${gradosDisponibles.map(grado => `<option value="${grado}">Grado ${grado}</option>`).join('')}`;
+      <label for="grado">Año:</label>
+      <select name="grado" id="grados-disponibles">
+      </select>
+
+      <button type="submit" id="buscar">Buscar Listado</button>
+    </form>
+
+
+    <% if (data.calificaciones) {%>
+      <div class="card-listado">
+        <form id="form-calificaciones">
+          <table>
+            <tr>
+              <th>Estudiante</th>
+              <th>Cedula</th>
+              <th>Lapso 1</th>
+              <th>Lapso 2</th>
+              <th>Lapso 3</th>
+              <th>Nota Final</th>
+            </tr>
+
+            <%data.calificaciones.forEach(estudiante=> {%>
+              <tr>
+                <td>
+                  <%= estudiante.nombre %>
+                </td>
+                <td>
+                  <%= estudiante.cedula %>
+                </td>
+
+                <%if (estudiante.calificaciones !=[]) {%>
+
+                  <td><input type="number" id="lapso1_<%=estudiante.estudiante_id%>"
+                      value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 1)?.calificacion || '' %>">
+                  </td>
+                  <td><input type="number" id="lapso2_<%=estudiante.estudiante_id%>"
+                      value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 2)?.calificacion || '' %>">
+                  </td>
+                  <td><input type="number" id="lapso3_<%=estudiante.estudiante_id%>"
+                      value="<%= estudiante.calificaciones.find(calificacion => calificacion.lapso === 3)?.calificacion || '' %>">
+                  </td>
+
+                  <%} else{%>
+                    <td><input type="number" id="lapso1_<%=estudiante.estudiante_id%>"></td>
+                    <td><input type="number" id="lapso2_<%=estudiante.estudiante_id%>"></td>
+                    <td><input type="number" id="lapso3_<%=estudiante.estudiante_id%>"></td>
+                    <%}%>
+                      <td><input type="number" disabled></td>
+              </tr>
+
+              <%})%>
+          </table>
+
+          <button id="guardar" style="margin-top: 15px;">Guardar</button>
+        </form>
+
+      </div>
+      <% } %>
+  </main>
+
+  <!--... -->
+
+  <footer>
+    <p>&copy; 2024. Colegio Santa Marta. Todos los derechos reservados.</p>
+  </footer>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
       
+
+      const data = JSON.parse('<%- JSON.stringify(data) %>');
+      const selectMateria = document.querySelector('select[name="materia"]');
+      const selectGrados = document.querySelector('select[name="grado"]');
+      const seccion = document.querySelector('select[name="seccion"]');
+
+      /* Pre inicializar datos */
+
+      // Materias disponibles
+      const asignaturasDisponibles = data.cargas.map(carga => carga.nombre);
+      const asignaturasUnicas = [...new Set(asignaturasDisponibles)];
+      const asignaturas = data.asignaturas.filter(asignatura => asignaturasUnicas.includes(asignatura.nombre));
+      selectMateria.innerHTML = `${asignaturas.map(asignatura => `<option value="${asignatura.id}">${asignatura.nombre}</option>`).join('')}`;
+
+      const materiaSeleccionada = selectMateria.options[selectMateria.selectedIndex].value;
+      // grados
+      const gradosDisponibles = data.asignaturas.filter(asignatura => asignatura.id == materiaSeleccionada)[0].grados;
+      selectGrados.innerHTML = `${gradosDisponibles.map(grado => `<option value="${grado}">Grado ${grado}</option>`).join('')}`;
+      // secciones
+      const materia_nombre = data.asignaturas.filter(asignatura => asignatura.id == selectMateria.value)[0].nombre;
+      const cargasDisponibles = data.cargas.filter(carga => carga.nombre == materia_nombre);
+      const seccionesDisponibles = [...new Set(cargasDisponibles.map(carga => carga.seccion))];
+      seccion.innerHTML = `${seccionesDisponibles.map(seccion => `<option value="${seccion}">Seccion ${seccion}</option>`).join('')}`;
+
       
-        selectMateria.addEventListener('change', function(){
-            const gradosDisponibles = data.asignaturas.filter(asignatura => asignatura.id == selectMateria.value)[0].grados;
-            selectGrados.innerHTML = `${gradosDisponibles.map(grado => `<option value="${grado}">Grado ${grado}</option>`).join('')}`;
-          })
+      selectMateria.addEventListener('change', function () {
+        const gradosDisponibles = data.asignaturas.filter(asignatura => asignatura.id == selectMateria.value)[0].grados;
+        selectGrados.innerHTML = `${gradosDisponibles.map(grado => `<option value="${grado}">Grado ${grado}</option>`).join('')}`;
 
-
-
-        // Codigo para manejar el envio de datos:
-        const datos = [];
-        const obtenerData = () => {
-            data.calificaciones.forEach(element => {
-              const inputLapso1 = document.querySelector(`#lapso1_${element.estudiante_id}`);
-              const inputLapso2 = document.querySelector(`#lapso2_${element.estudiante_id}`);
-              const inputLapso3 = document.querySelector(`#lapso3_${element.estudiante_id}`);
-
-              const temp = {
-                estudiante_id: element.estudiante_id,
-                materia_id: parseInt(element.materia_id),
-                periodo_id: data.periodo.id,
-                anio: parseInt(element.anio),
-                seccion: element.seccion,
-                lapso1: inputLapso1.value == '' ? 0 : parseFloat(inputLapso1.value),
-                lapso2: inputLapso2.value == '' ? 0 : parseFloat(inputLapso2.value),
-                lapso3: inputLapso3.value == '' ? 0 : parseFloat(inputLapso3.value)
-              }
-
-              datos.push(temp);
-            }); 
-            
-          enviarDatos();
-        }
-
-        const enviarDatos = () => {
-          fetch('/docente/carga-notas/guardar', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({data: datos})
-          })
-          .then(res => res.json())
-          .then(data => {
-            console.log(data)
-          })
-        }
-
-        // Boton de envio de datos
-
-        const boton = document.querySelector('#guardar-boton');
-        boton.addEventListener('click', () => {
-          obtenerData();
-        })
+        // encontrar nombre de la materia en base al id
+        const materia_nombre = data.asignaturas.filter(asignatura => asignatura.id == selectMateria.value)[0].nombre;
+        const cargasDisponibles = data.cargas.filter(carga => carga.nombre == materia_nombre);
+        const seccionesDisponibles = [...new Set(cargasDisponibles.map(carga => carga.seccion))];
+        seccion.innerHTML = `${seccionesDisponibles.map(seccion => `<option value="${seccion}">Seccion ${seccion}</option>`).join('')}`;
       })
-    </script>
-    
+    })
+  </script>
+
 </body>
+
 </html>

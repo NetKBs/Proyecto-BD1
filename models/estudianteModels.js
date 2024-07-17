@@ -145,7 +145,7 @@ exports.estudianteByCedula = async (cedula) => {
                 SELECT * FROM persona 
                 INNER JOIN estudiante ON persona.id = estudiante.datos_personales_id 
                 WHERE persona.cedula = ?`, 
-                [cedula], 
+                [parseInt(cedula)], 
                 (err, row) => {
                     if (err) {
                         reject(err);
