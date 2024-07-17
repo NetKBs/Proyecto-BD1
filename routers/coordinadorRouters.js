@@ -8,6 +8,7 @@ const docenteControllers = require('../controllers/docenteControllers')
 const asignaturaControllers = require('../controllers/asignaturaControllers')
 const inscripcionControllers = require('../controllers/inscripcionControllers')
 const cargaAcademicaControllers = require('../controllers/cargaAcademicaControllers')
+const calificacionesControllers = require('../controllers/calificacionesControllers')
 
 router.get('/', coordinadorControllers.coordinador);
 
@@ -63,5 +64,10 @@ router.post('/carga-academica/crear', cargaAcademicaControllers.crearCargaAcadem
 router.get('/carga-academica/buscar', cargaAcademicaControllers.buscarCargaAcademica);
 router.get('/carga-academica/editar/:id', cargaAcademicaControllers.editarCargaAcademicaView);
 router.post('/carga-academica/editar/:id', cargaAcademicaControllers.editarCargaAcademica);
+
+// Rutas para manejar calificaciones
+router.get('/calificaciones', calificacionesControllers.calificaciones);
+router.get('/calificaciones/boletin', calificacionesControllers.boletin);
+
 
 module.exports = router

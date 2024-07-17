@@ -12,3 +12,8 @@ body {
 .actual-link-sidebar {
     background-color: #1e2d5a;
 }
+
+.error {
+    color: red  !important; 
+    font-weight: bold !important;
+}

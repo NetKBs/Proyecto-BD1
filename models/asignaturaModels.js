@@ -102,6 +102,39 @@ exports.getAsignaturaById = async (id) => {
     }
 };
 
+exports.getAsignaturaByAnio = async (anio) => {
+    try {
+        // Fetch the data from the materia table
+        const materias = await new Promise((resolve, reject) => {
+            db.all(
+                `SELECT * FROM materia WHERE id IN (
+                    SELECT materia_id FROM materia_anio WHERE anio = ?
+                )`,
+                [anio],
+                (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(rows);
+                    }
+                }
+            );
+        });
+
+        // Combine the data from the two queries
+        const result = materias.map(materia => ({
+            id: materia.id,
+            codigo: materia.codigo,
+            nombre: materia.nombre,
+        }));
+
+        return result;
+    } catch (error) {
+        console.log(error.message);
+        throw error;
+    }
+};
+
 exports.crearAsignatura = async (body) => {
 
     try {

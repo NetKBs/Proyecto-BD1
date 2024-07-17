@@ -1,5 +1,6 @@
 const db = require('../db/connection')
-
+const inscripcionModels = require('./inscripcionModels')
+const asignaturaModels = require('./asignaturaModels')
 
 exports.getCalificacionesEstudiantes = async (body) => {
     try {
@@ -28,6 +29,109 @@ exports.getCalificacionesEstudiantes = async (body) => {
         const calificacionesPromises = await Promise.all(promises);
         return calificacionesPromises;
         
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+
+exports.getBoletinesNotas = async (id_estudiante, anio) => {
+    try {
+
+        // Ver si ese estudiante está o ha sido inscrito a ese año escolar
+        // toma el más reciente
+        const inscrito = (await inscripcionModels.getEstudianteByIdAnio(id_estudiante, anio))[0]
+        //console.log(inscrito)
+        if (!inscrito) {
+            return "Estudiante no está isncrito a ese año"
+        }
+
+        // Obtener las materias que se ven en ese año escolar en especifico
+        const materias = await asignaturaModels.getAsignaturaByAnio(anio)
+        //console.log(materias)
+        if (!materias) {
+            return "No existen materias para ese año escolar"
+        }
+
+        // Obtener las notas de cada lapso de cada materia para ese estudiante
+        const boletinesNotas = await new Promise((resolve, reject) => {
+            db.all(
+                `
+                SELECT * FROM calificacion
+                WHERE estudiante_id = ? AND anio = ?
+                ORDER BY id DESC
+                `,
+                [id_estudiante, anio],
+                (err, row) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(row);
+                    }
+                }
+            );
+        });
+
+        //console.log(boletinesNotas)
+        const boletinesNotasGrupos = {};
+
+        for (const boletinNota of boletinesNotas) {
+            const { materia_id, lapso, calificacion } = boletinNota;
+            if (!boletinesNotasGrupos[materia_id]) {
+                const materia = materias.find(materia => materia.id === materia_id);
+                boletinesNotasGrupos[materia_id] = {
+                    nombre: materia.nombre,
+                    lapso1: 0,
+                    lapso2: 0,
+                    lapso3: 0
+                };
+            }
+            boletinesNotasGrupos[materia_id][`lapso${lapso}`] = calificacion || 0;
+        }
+        
+        // Agregar las materias que no tienen calificaciones
+        for (const materia of materias) {
+            if (!boletinesNotasGrupos[materia.id]) {
+                boletinesNotasGrupos[materia.id] = {
+                    nombre: materia.nombre,
+                    lapso1: 0,
+                    lapso2: 0,
+                    lapso3: 0
+                };
+            }
+        }
+        console.log(boletinesNotasGrupos)
+
+        /*const boletinesNotas = await new Promise((resolve, reject) => {
+            db.all(
+                `SELECT materia_anio.materia_id, materia.nombre, materia.creditos, SUM(calificacion.calificacion) / COUNT(calificacion.calificacion) AS promedio
+                    FROM calificacion
+                    INNER JOIN materia_anio ON calificacion.materia_id = materia_anio.materia_id
+                    INNER JOIN materia ON materia_anio.materia_id = materia.id
+                    WHERE estudiante_id = ? AND anio = ?
+                    GROUP BY materia_anio.materia_id, materia.nombre, materia.creditos`,
+                [cedula, ano],
+                (err, row) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(row);
+                    }
+                }
+            );
+        });
+
+        if (boletinesNotas.length === 0) {
+            return [];
+        } else {
+            return boletinesNotas.map(boletin => ({
+                materia_id: boletin.materia_id,
+                nombre: boletin.nombre,
+                creditos: boletin.creditos,
+                promedio: boletin.promedio,
+            }));
+        }*/
     } catch (error) {
         console.log(error)
         throw error
