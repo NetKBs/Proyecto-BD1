@@ -1,6 +1,7 @@
 const db = require('../db/connection')
 const inscripcionModels = require('./inscripcionModels')
 const asignaturaModels = require('./asignaturaModels')
+const docenteModels = require('./docenteModels')
 
 exports.getCalificacionesEstudiantes = async (body) => {
     try {
@@ -49,10 +50,18 @@ exports.getBoletinesNotas = async (id_estudiante, anio) => {
 
         // Obtener las materias que se ven en ese año escolar en especifico
         const materias = await asignaturaModels.getAsignaturaByAnio(anio)
+        console.log(materias)
         //console.log(materias)
         if (!materias) {
             return "No existen materias para ese año escolar"
         }
+
+        // Obtener nombre de docente de cada materia
+        materias.forEach(async materia => {
+            console.log(materia.docente_id)
+            const docente = (await docenteModels.docenteById(materia.docente_id))
+            console.log(docente)
+        });
 
         // Obtener las notas de cada lapso de cada materia para ese estudiante
         const boletinesNotas = await new Promise((resolve, reject) => {
@@ -89,7 +98,7 @@ exports.getBoletinesNotas = async (id_estudiante, anio) => {
             }
             boletinesNotasGrupos[materia_id][`lapso${lapso}`] = calificacion || 0;
         }
-        
+
         // Agregar las materias que no tienen calificaciones
         for (const materia of materias) {
             if (!boletinesNotasGrupos[materia.id]) {
@@ -97,7 +106,7 @@ exports.getBoletinesNotas = async (id_estudiante, anio) => {
                     nombre: materia.nombre,
                     lapso1: 0,
                     lapso2: 0,
-                    lapso3: 0
+                    lapso3: 0,
                 };
             }
         }
