@@ -9,6 +9,9 @@ exports.cargaAcademica = (req, res) => {
 
 exports.crearCargaAcademicaView = async (req, res) => {
     const periodoActivo = await periodoModels.buscarPeriodoActivo();
+    if (!periodoActivo) {
+        return res.render('coordinador/cargaAcademica-home', {data: {error:"Debe existir un periodo activo"}})
+    }
     const periodoDatos = await periodoModels.getPeriodoById(periodoActivo.id);
     const asignaturas = await asignaturaModels.getAsignaturas();
     res.render('coordinador/cargaAcademica-crear', {data: {periodo: periodoDatos, asignaturas: asignaturas}})
@@ -46,6 +49,9 @@ exports.buscarCargaAcademica = async (req, res) => {
 exports.editarCargaAcademicaView = async (req, res) => {
     const carga_id = req.params.id
     const periodoActivo = await periodoModels.buscarPeriodoActivo();
+    if (!periodoActivo) {
+        return res.render('coordinador/cargaAcademica-home', {data: {error:"Debe existir un periodo activo"}})
+    }
     const periodoDatos = await periodoModels.getPeriodoById(periodoActivo.id);
     const asignaturas = await asignaturaModels.getAsignaturas();
     let cargaData = await cargaAcademicaModels.getCargaAcademicaById(carga_id)

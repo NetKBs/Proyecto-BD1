@@ -1,4 +1,4 @@
 
 exports.coordinador = async (req, res) => {
-    res.render('coordinador/home')
+    res.render('coordinador/home', {data:{}})
 }

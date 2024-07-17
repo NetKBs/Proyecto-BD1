@@ -50,6 +50,10 @@
     </form>
 </div>
 
+<% if (data.error) {%>
+    <p class="error"><%= data.error%></p>
+<%}%>
+
 <% if (data.docente) { %>
 
 <div class="card-tabla">

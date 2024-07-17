@@ -4,6 +4,10 @@ const inscripcionModels = require('../models/inscripcionModels')
 
 exports.inscripcion = async (req, res) => {
     const periodoActivo = await periodoModels.buscarPeriodoActivo();
+    if (!periodoActivo) {
+        res.redirect('/coordinador');
+        return;
+    }
     const periodoDatos = await periodoModels.getPeriodoById(periodoActivo.id);
     res.render('coordinador/inscripcion_home', {data:{periodo: periodoDatos}})
 }
