@@ -17,7 +17,7 @@
     <header>
         <div id="left-header">
             <a href="#"><img src="/images/logo.png" alt="logo"></a>
-            <h1>Coordinador Abiham Ramos</h1>
+            <h1>Colegio Santa Marta - Coordinación</h1>
         </div>
     
         <!-- OPCIONES DEL HEADER ACA -->
@@ -71,7 +71,21 @@
                         </select>
     
                         <label for="cedula">Cedula</label>
-                        <input type="text" id="cedula" name="cedula">
+                        <input type="text" id="cedula" name="cedula" oninput="validaNumericos();">
+
+
+                        <script>
+                            function validaNumericos() {
+                                var inputCedula = document.getElementById('cedula');
+                                var valor = inputCedula.value;
+                                if (!/^\d{1,8}$/.test(valor)) {
+                                    inputCedula.setCustomValidity('Por favor, ingresa un número de 8 digitos (si tiene 7 un 0 al inicio).');
+                                } else {
+                                    inputCedula.setCustomValidity('');
+                                }
+                            }
+                        </script>
+                         
     
                         <label for="estado_civil">Estado Civil</label>
                         <select name="estado_civil">
@@ -86,10 +100,36 @@
                         <input type="text" id="lugar_trabajo" name="lugar_trabajo">
     
                         <label for="tlfno">Teléfono</label>
-                        <input type="text" id="tlfno" name="tlfno">
+                        <input type="text" id="tlfno" name="tlfno" oninput="validaNumTlfno();">
+
+                        <script>
+                            function validaNumTlfno() {
+                                var inputTlfno = document.getElementById('tlfno');
+                                var valor = inputTlfno.value;
+                                if (!/^\d{1,11}$/.test(valor)) {
+                               inputTlfno.setCustomValidity('Por favor, ingresa un numero de telefono valido .');
+                               } else {
+                               inputTlfno.setCustomValidity('');
+                            }
+                         }
+                        </script>
     
                         <label for="tlfno2">Teléfono Alternativo</label>
-                        <input type="text" id="tlfno2" name="tlfno2">
+                        <input type="text" id="tlfno2" name="tlfno2" oninput="validaNumTlfno2();">
+
+                        
+                        <script>
+                            function validaNumTlfno2() {
+                                var inputTlfno2 = document.getElementById('tlfno2');
+                                var valor = inputTlfno2.value;
+                                if (!/^\d{1,11}$/.test(valor)) {
+                               inputTlfno2.setCustomValidity('Por favor, ingresa un numero de telefono valido .');
+                               } else {
+                               inputTlfno2.setCustomValidity('');
+                            }
+                         }
+                        </script>
+                        
                       
                     </div>
     
