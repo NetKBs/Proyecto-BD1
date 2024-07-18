@@ -67,7 +67,7 @@ exports.representanteByCedula = async (req, res) => {
         const fechaActual = new Date();
         const edad = Math.floor((fechaActual - fechaNacimiento) / (1000 * 60 * 60 * 24 * 365.25));
         result.edad = edad
-
+        console.log(result)
         const representados = await representanteModels.buscarRepresentadoByRepresentanteId(result.id)
         res.render('coordinador/representante_home', { data: { representante: result, representados: representados } })
     }
@@ -81,6 +81,7 @@ exports.crearRepresentanteView = async (req, res) => {
 
 exports.crearRepresentante = async (req, res) => {
     body = req.body
+
     result = await representanteModels.crearRepresentante(body)
     if (result instanceof Error) {
         console.log("Ocurrió un error al crear el representante:", result.message);
@@ -143,8 +144,10 @@ exports.eliminarRepresentante = async (req, res) => {
 exports.crearRepresentado = async (req, res) => {
     representante_id = req.params.id
     estudiante_cedula = req.body.representado
+    console.log("hoasdf")
+    console.log(representante_id, estudiante_cedula)
     estudiante_id = (await estudianteModels.estudianteByCedula(estudiante_cedula))
-
+    console.log(estudiante_id)
     if (!estudiante_id) {
         console.log({ error: 'Estudiante no encontrado' })
         res.redirect("/coordinador/representante")

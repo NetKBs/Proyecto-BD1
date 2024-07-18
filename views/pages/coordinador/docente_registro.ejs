@@ -159,7 +159,8 @@
                     <script>
                         function validaUsername() {
                             var inputUser = document.getElementById('usuario');
-                            var valor = inputUser.value;
+                       
+                            consolo.log(valor)
                             if (valor.length !== 7) {
                                 inputUser.setCustomValidity('El usuario debe contener 7 caracteres.');
                             }else{

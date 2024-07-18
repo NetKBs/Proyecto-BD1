@@ -36,9 +36,12 @@ exports.clave = async (req, res) => {
 
 exports.cargaNotasView = async (req, res) => {
     const user = req.user.user
+    console.log(user)
     const periodoActivo = await periodoModels.buscarPeriodoActivo();
+    const docente = await docenteModels.getDocenteByUserId(user.id)
+
     const cargas = await cargaAcademicaModels.cargasByDocenteID(user.id, periodoActivo.id)
-    
+    console.log(cargas)
 
     if(!periodoActivo) {
         res.redirect('/docente')

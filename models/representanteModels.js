@@ -243,7 +243,7 @@ exports.crearRepresentado = async (representante_id, estudiante_id) => {
                     representante_id, estudiante_id
                 ) 
                 VALUES (?, ?)`, 
-                [representante_id, estudiante_id],
+                [representante_id, estudiante_id.id],
             
                 (err, row) => {
                     if (err) {

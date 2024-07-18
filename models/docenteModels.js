@@ -137,8 +137,11 @@ exports.docenteById = async (id) => {
     }
 }
 
+
+
 exports.getDocenteByUserId = async (id) => {
     try {
+        console.log(id)
         return new Promise ((resolve, reject) => {
             db.get(
                 `
@@ -150,6 +153,8 @@ exports.getDocenteByUserId = async (id) => {
                     if (err) {
                         reject(err);
                     } else {
+                 
+                        console.log(rows)
                         resolve(rows);
                     }
                 })

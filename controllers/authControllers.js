@@ -44,9 +44,9 @@ exports.signUpAuth = async (req, res) => {
 exports.login = (req, res) => {
     
     if (req.cookies.token) {
-  
         return alreadyLoggedIn(req, res);
     }
+
     res.render('login', { data: {} });
 
 };
@@ -86,6 +86,7 @@ exports.loginAuth = async (req, res) => {
 
     try {
         const user = await usuarioModels.getUsuarioByNombre(username);
+
         if (!user || user.clave_acceso !== password) {
             return res.render('login', { data: { error: 'Credenciales incorrectas' } });
         }
@@ -94,14 +95,14 @@ exports.loginAuth = async (req, res) => {
         if (!rol) {
             return res.status(402).json({ error: 'Rol no encontrado' });
         }
-
+        
         const userData = {
             id: await getUserDataByRol(rol.nombre, user.id),
             rol: rol.nombre,
             user_id: user.id
         };
         
-
+        console.log("funciona njd")
         loggedIn(userData, res);
     } catch (error) {
         console.error(error.message);
@@ -110,6 +111,7 @@ exports.loginAuth = async (req, res) => {
 };
 
 const loggedIn = (user, res) => {
+    
     const token = createToken(user);
 
     if (!token) {
@@ -137,14 +139,16 @@ const createToken = (user) => {
 };
 
 const getUserDataByRol = async (rol, id) => {
-
+    console.log(rol, id)
     switch (rol) {
         case 'Coordinador':
             return (await coordinadorModels.getCoordinadorByUserId(id)).id 
         case 'Representante':
             return (await representanteModels.getRepresentanteByUserId(id)).id;
         case 'Docente':
-            return (await docenteModels.getDocenteByUserId(id)).id
+            console.log("LUGAR LUGAR")
+            const result = await docenteModels.getDocenteByUserId(id)
+            return result.id
         default:
             console.log("Estoy en default")
             return {};
